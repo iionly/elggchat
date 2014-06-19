@@ -1,6 +1,6 @@
 Elggchat for Elgg 1.9
-Latest Version: 1.9.0
-Released: 2014-06-14
+Latest Version: 1.9.1
+Released: 2014-06-19
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (c) iionly (for Elgg 1.8 and newer), ColdTrick IT Solutions
@@ -52,6 +52,12 @@ Additional configuration: for the chat session cleanup to work Elgg's hourly cro
 
 
 Changelog (iionly)
+
+1.9.1
+- Version 1.8.1 updated for Elgg 1.9.
+
+1.8.1
+- Fix for chat toolbar and chat sessions to correctly work for users with no friends (thanks to Brett for reporting).
 
 1.9.0
 - Version 1.8.0 updated for Elgg 1.9.

@@ -94,6 +94,10 @@ if ($user = elgg_get_logged_in_user_entity()) {
 		}
 	}
 
+	$result["friends"] = array();
+	$result["friends"]["offline"] = array();
+	$result["friends"]["online"] = array();
+
 	// Add friends information
 	$friends_count = elgg_get_entities_from_relationship(array(
 		'relationship' => 'friend',
@@ -110,9 +114,6 @@ if ($user = elgg_get_logged_in_user_entity()) {
 			'type' => 'user',
 			'limit' => $friends_count,
 		));
-		$result["friends"] = array();
-		$result["friends"]["offline"] = array();
-		$result["friends"]["online"] = array();
 
 		$inactive = (int) elgg_get_plugin_setting("onlinestatus_inactive", "elggchat");
 		$time = time();
