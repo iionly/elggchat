@@ -25,6 +25,7 @@ return array(
 	'elggchat:friendspicker:info' => "Freunde online",
 	'elggchat:friendspicker:online' => "Online",
 	'elggchat:friendspicker:offline' => "Offline",
+	'elggchat:friendspicker:nofriends' => "derzeit keine",
 
 	'elggchat:chat:invite' => "Einladen",
 	'elggchat:chat:leave' => "Verlassen",
@@ -65,9 +66,12 @@ return array(
 	'elggchat:crondone' => "Chat-Sessions gesäubert\n",
 
 	// Plugin settings
-	'elggchat:admin:settings:hours' => "%s Stunde(n)",
+	'elggchat:admin:settings:hour' => "%s Stunde",
+	'elggchat:admin:settings:hours' => "%s Stunden",
+	'elggchat:admin:settings:days' => "%s Tage",
 
-	'elggchat:admin:settings:maxsessionage' => "Max. Zeit, die eine Session im Leerlauf sein darf bevor sie geschlossen wird",
+	'elggchat:admin:settings:maxsessionage' => "Max. Zeit, die eine Session im Leerlauf sein darf bevor sie automatisch geschlossen und gelöscht wird",
+	'elggchat:admin:settings:keepsessions' => "Behalte alle Sessions und lösche sie nicht automatisch (Admins können sie weiterhin manuell löschen)",
 
 	'elggchat:admin:settings:chatupdateinterval' => "Aktualisierungsintervall (in Sekunden) des Chat-Fensters",
 	'elggchat:admin:settings:maxchatupdateinterval' => "Nach 10 Aktualisierungsintervallen ohne neue Daten (\"idle\"), wird das Aktualisierungsintervall verdoppelt bis dieses Maximum (in Sekunden) erreicht ist",

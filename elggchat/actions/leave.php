@@ -30,7 +30,10 @@ if (check_entity_relationship($sessionId, ELGGCHAT_MEMBER, $userId)) {
 	// Clean up
 	if ($session->countEntitiesFromRelationship(ELGGCHAT_MEMBER) == 0) {
 		// No more members
-		$session->delete();
+		$keepsessions = elgg_get_plugin_setting("keepsessions","elggchat");
+		if (elgg_get_plugin_setting("keepsessions","elggchat") != "yes") {
+			$session->delete();
+		}
 	} elseif ($session->countAnnotations(ELGGCHAT_MESSAGE) == 0 && !check_entity_relationship($session->guid, ELGGCHAT_MEMBER, $session->owner_guid)) {
 		// Owner left without leaving a real message
 		$session->delete();

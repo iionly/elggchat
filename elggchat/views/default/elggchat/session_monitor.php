@@ -38,6 +38,7 @@ if (empty($flash)) {
 }
 
 elgg_require_js('elggchat_scroll');
+
 ?>
 
 <script type="text/javascript">
@@ -100,7 +101,7 @@ function inviteFriends(sessionid){
 		currentChatWindow.html("");
 		$("#elggchat_friends_picker .chatmemberinfo").each(function(){
 			var friend = $(this).find("a");
-			if(!($("#" + sessionid + " .chatmember a[rel='" + friend.attr('rel') + "']").length > 0)){
+			if(!($("#" + sessionid + " .chatmembers a[rel='" + friend.attr('rel') + "']").length > 0)){
 				newFriend = "<a href='javascript:addFriend(" + sessionid + ", " + friend.attr('rel') + ")'>";
 				newFriend += friend.html();
 				newFriend += "</a><br />";
@@ -145,11 +146,11 @@ function leaveSession(sessionid){
 }
 
 function elggchat_toolbar_resize(){
-	$("#elggchat_toolbar_left").css("width", $(window).width() - $("#toggle_elggchat_toolbar").width());
+	$("#elggchat_toolbar_right").css("width", $(window).width() - $("#toggle_elggchat_toolbar").width());
 }
 
 function toggleChatToolbar(speed){
-	$('#elggchat_toolbar_left').toggle(speed);
+	$('#elggchat_toolbar_right').toggle(speed);
 	$('#toggle_elggchat_toolbar').toggleClass('minimizedToolbar');
 
 	if($('#toggle_elggchat_toolbar').hasClass('minimizedToolbar')){
@@ -217,7 +218,7 @@ function checkForSessions(firsttime){
 
 				var newSession = "";
 
-				newSession += "<div class='elgg-icon elgg-icon-delete-alt' style='float:right' onclick='leaveSession(" + i + ")' title='<?php echo elgg_echo("elggchat:chat:leave");?>'></div><a href='javascript:openSession(" + i + ")'>" + session.name + "</a>";
+				newSession += "<a href='javascript:openSession(" + i + ")'>" + session.name + "</a><div class='elgg-icon elgg-icon-delete-alt' style='float:right' onclick='leaveSession(" + i + ")' title='<?php echo elgg_echo("elggchat:chat:leave");?>'></div>";
 				newSession += "<div class='chatsessiondatacontainer'>";
 				newSession += "<div class='chatsessiondata'>";
 				newSession += "<div class='chatmembers'><table>";
@@ -356,11 +357,16 @@ function checkForSessions(firsttime){
 			tableDataOffline += friend;
 		});
 
-		if (numOnline>0)
-			$("#elggchat_friends_picker").append("<h3 class='settings'><?php echo elgg_echo('elggchat:friendspicker:online');?> (" + numOnline + ")</h3><table>"  + tableDataOnline + "</table>");
-		if ((numOffline>0) && (show_offline=="yes"))
-			$("#elggchat_friends_picker").append("<h3 class='settings'><?php echo elgg_echo('elggchat:friendspicker:offline');?> (" + numOffline + ")</h3><table>" + tableDataOffline + "</table>");
-
+		if ((numOnline < 1) && (show_offline!="yes")) {
+			$("#elggchat_friends_picker").append("<?php echo elgg_echo('elggchat:friendspicker:nofriends');?>");
+		} else {
+			if (numOnline>0) {
+				$("#elggchat_friends_picker").append("<h3 class='settings'><?php echo elgg_echo('elggchat:friendspicker:online');?> (" + numOnline + ")</h3><table>"  + tableDataOnline + "</table>");
+			}
+			if ((numOffline>0) && (show_offline=="yes")) {
+				$("#elggchat_friends_picker").append("<h3 class='settings'><?php echo elgg_echo('elggchat:friendspicker:offline');?> (" + numOffline + ")</h3><table>" + tableDataOffline + "</table>");
+			}
+		}
 		$("#elggchat_friends_picker a").each(function(){
 			$(this).attr("href","javascript:startSession(" + this.rel + "); toggleFriendsPicker();");
 		});
@@ -437,14 +443,15 @@ $(document).ready(function(){
 </script>
 
 <div id="elggchat_toolbar">
-	<div id="elggchat_toolbar_left" >
-		<div id='elggchat_sessions'></div>
+	<div id="elggchat_toolbar_right">
+		<div id="elggchat_sessions"></div>
 
 		<div id="elggchat_friends">
 			<a href="javascript:toggleFriendsPicker();"></a>
+			<div id="elggchat_friends_picker"></div>
 		</div>
-		<div id="elggchat_friends_picker"></div>
-		<div id='elggchat_extensions'>
+
+		<div id="elggchat_extensions">
 			<?php
 				if(elgg_get_plugin_setting("enableExtensions", "elggchat") == "yes") {
 					echo elgg_view("elggchat/extensions");

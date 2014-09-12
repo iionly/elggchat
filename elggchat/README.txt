@@ -1,6 +1,6 @@
 Elggchat for Elgg 1.9
-Latest Version: 1.9.1
-Released: 2014-06-19
+Latest Version: 1.9.2
+Released: 2014-09-12
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (c) iionly (for Elgg 1.8 and newer), ColdTrick IT Solutions
@@ -43,6 +43,7 @@ The Elggchat plugin can be downloaded for free but offering a chat feature on yo
 
 Installation and configuration:
 
+(0. If you have a previous version of the plugin installed, start with deaktivating the Elggchat plugin, then remove the elggchat plugin folder from the mod directory completely before installing the new version,)
 1. Copy the elggchat plugin folder into the mod folder on your server,
 2. Enable the plugin in the admin section of your site,
 3. Check out the plugin settings and modify the configurations according to your liking.
@@ -52,6 +53,14 @@ Additional configuration: for the chat session cleanup to work Elgg's hourly cro
 
 
 Changelog (iionly)
+
+1.9.2
+- Version 1.8.2 updated for Elgg 1.9.
+
+1.8.2
+- New admin option: optionally keep all chat session logs (manual deletion still possible if this option is enabled),
+- CSS fixes to prevent layout issues (mainly changes of font style) by a theme plugin installed,
+- Layout adjustments of chat toolbar (most noticeable: chat sessions aligned right) for better results on smaller screens (though it might still not work on all mobile devices - especially older ones).
 
 1.9.1
 - Version 1.8.1 updated for Elgg 1.9.

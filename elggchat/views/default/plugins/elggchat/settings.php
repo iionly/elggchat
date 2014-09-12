@@ -19,6 +19,7 @@ $chatUpdateInterval = $vars['entity']->chatUpdateInterval;
 $maxChatUpdateInterval = $vars['entity']->maxChatUpdateInterval;
 $monitorUpdateInterval = $vars['entity']->monitorUpdateInterval;
 $maxSessionAge = $vars['entity']->maxSessionAge;
+$keepsessions = $vars['entity']->keepsessions;
 $enableSounds = $vars['entity']->enableSounds;
 $enableFlashing = $vars['entity']->enableFlashing;
 $enableExtensions = $vars['entity']->enableExtensions;
@@ -51,12 +52,19 @@ if (empty($vars['entity']->onlinestatus_inactive)) {
 <?php echo elgg_echo('elggchat:admin:settings:maxchatupdateinterval'); ?><br />
 
 <select name="params[maxSessionAge]">
-	<option value="3600" <?php if ($maxSessionAge == 3600) echo " selected=\"yes\" "; ?>><?php echo elgg_echo("elggchat:admin:settings:hours", array(1)); ?></option>
+	<option value="3600" <?php if ($maxSessionAge == 3600) echo " selected=\"yes\" "; ?>><?php echo elgg_echo("elggchat:admin:settings:hour", array(1)); ?></option>
 	<option value="21600" <?php if ($maxSessionAge == 21600 || empty($maxSessionAge)) echo " selected=\"yes\" "; ?>><?php echo elgg_echo("elggchat:admin:settings:hours", array(6)); ?></option>
 	<option value="43200" <?php if ($maxSessionAge == 43200) echo " selected=\"yes\" "; ?>><?php echo elgg_echo("elggchat:admin:settings:hours", array(12)); ?></option>
 	<option value="86400" <?php if ($maxSessionAge == 86400) echo " selected=\"yes\" "; ?>><?php echo elgg_echo("elggchat:admin:settings:hours", array(24)); ?></option>
+	<option value="604800" <?php if ($maxSessionAge == 604800) echo " selected=\"yes\" "; ?>><?php echo elgg_echo("elggchat:admin:settings:days", array(7)); ?></option>
 </select>
 <?php echo elgg_echo('elggchat:admin:settings:maxsessionage'); ?><br />
+
+<select name="params[keepsessions]">
+	<option value="yes" <?php if ($keepsessions == "yes") echo " selected=\"yes\" "; ?>><?php echo elgg_echo("option:yes");?></option>
+	<option value="no" <?php if ($keepsessions != "yes") echo " selected=\"yes\" "; ?>><?php echo elgg_echo("option:no");?></option>
+</select>
+<?php echo elgg_echo('elggchat:admin:settings:keepsessions'); ?><br />
 
 <br>
 <?php echo elgg_echo('elggchat:admin:settings:online_status:active') . elgg_view("input/text", array("name"=>"params[onlinestatus_active]", "value"=>$vars['entity']->onlinestatus_active));?>

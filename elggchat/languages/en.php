@@ -25,6 +25,7 @@ return array(
 	'elggchat:friendspicker:info' => "Friends online",
 	'elggchat:friendspicker:online' => "Online",
 	'elggchat:friendspicker:offline' => "Offline",
+	'elggchat:friendspicker:nofriends' => "currently none",
 
 	'elggchat:chat:invite' => "Invite",
 	'elggchat:chat:leave' => "Leave",
@@ -65,9 +66,12 @@ return array(
 	'elggchat:crondone' => "Chat sessions cleaned up\n",
 
 	// Plugin settings
-	'elggchat:admin:settings:hours' => "%s hour(s)",
+	'elggchat:admin:settings:hour' => "%s hour",
+	'elggchat:admin:settings:hours' => "%s hours",
+	'elggchat:admin:settings:days' => "%s days",
 
 	'elggchat:admin:settings:maxsessionage' => "Max time a chat session can remain idle before cleanup",
+	'elggchat:admin:settings:keepsessions' => "Keep all chat sessions and don't clean them up automatically (admins still can delete them manually)",
 
 	'elggchat:admin:settings:chatupdateinterval' => "Polling interval (seconds) of the chat window",
 	'elggchat:admin:settings:maxchatupdateinterval' => "Every 10 times of polling with no data returned the polling interval will be multiplied until it reaches this maximum (seconds)",
