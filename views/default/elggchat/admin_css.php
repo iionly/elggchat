@@ -6,7 +6,7 @@
  *
  * @package elggchat
  * @author iionly (iionly@gmx.de)
- * @copyright iionly 2014
+ * @copyright iionly 2014-2015
  * @link https://github.com/iionly
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  */

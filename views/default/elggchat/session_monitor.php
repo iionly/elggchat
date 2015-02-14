@@ -6,11 +6,11 @@
  *
  * @package elggchat
  * @author ColdTrick IT Solutions
- * @copyright Coldtrick IT Solutions 2009-2014
+ * @copyright Coldtrick IT Solutions 2009-2015
  * @link http://www.coldtrick.com/
  *
  * for Elgg 1.8 and newer by iionly (iionly@gmx.de)
- * @copyright iionly 2014
+ * @copyright iionly 2014-2015
  * @link https://github.com/iionly
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  */
@@ -28,16 +28,11 @@ $sound = elgg_get_plugin_setting("enableSounds","elggchat");
 if(empty($sound)) {
 	$sound = "no";
 }
-if ($sound == "yes") {
-	elgg_load_js('elggchat_sound');
-}
 
 $flash = elgg_get_plugin_setting("enableFlashing","elggchat");
 if (empty($flash)) {
 	$flash = "no";
 }
-
-elgg_require_js('elggchat_scroll');
 
 ?>
 
@@ -45,6 +40,8 @@ elgg_require_js('elggchat_scroll');
 
 var basesec = <?php echo $basesec;?>;
 var maxsecs = <?php echo $maxsecs;?>;
+var flash = '<?php echo $flash;?>';
+var sound = '<?php echo $sound;?>';
 var delay = 1000;
 
 var secs;
@@ -57,9 +54,9 @@ function InitializeTimer(){
 	// Set the length of the timer, in seconds
 	secs = basesec;
 	tick();
-	<?php if($flash == "yes"){?>
+	if(flash == "yes"){
 		blink_new();
-	<?php }?>
+	}
 }
 
 function blink_new(){
@@ -185,17 +182,21 @@ function toggleFriendsPicker(){
 }
 
 function scroll_to_bottom(sessionid){
-	$("#" + sessionid + " .chatmessages").scrollTo('max', 1000);
+	require(['jquery', 'elggchat/jquery.scrollTo'], function($) {
+		$("#" + sessionid + " .chatmessages").scrollTo('max', 1000);
+	});
 }
 
 function notify_new_message(){
-	<?php if($sound == "yes"){?>
-		var buzzer = new buzz.sound("<?php echo elgg_get_site_url(); ?>mod/elggchat/sound/new_message", {
+	if(sound == "yes"){
+		require(['elggchat/buzz'], function(buzz) {
+			var buzzer = new buzz.sound("<?php echo elgg_get_site_url(); ?>mod/elggchat/sound/new_message", {
 				formats: [ "ogg", "mp3", "m4a" , "wav"],
 				autoplay: true,
 				loop: false
 			});
-	<?php }?>
+		});
+	}
 }
 
 function checkForSessions(firsttime){

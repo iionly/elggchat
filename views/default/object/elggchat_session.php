@@ -4,7 +4,7 @@
  *
  * @package elggchat
  * @author iionly (iionly@gmx.de)
- * @copyright iionly 2014
+ * @copyright iionly 2014-2015
  * @link https://github.com/iionly
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  */
@@ -23,7 +23,7 @@ if ($full) {
 	$info = "<table>";
 	$info .= "<tr><td class='elggchat-chatsession-text'><label>" . elgg_echo('elggchat:session_details:guid', array($session->getGUID())) . "</label></td></tr>";
 
-	$delete_session = elgg_view("output/confirmlink",array(
+	$delete_session = elgg_view("output/url",array(
 		'href' => elgg_get_site_url() . "action/elggchat/delete_session?chatsession=" . $session->getGUID(),
 		'text' => elgg_echo('elggchat:chatsession_delete'),
 		'confirm' => elgg_echo('elggchat:chatsession_deleteconfirm'),
@@ -31,7 +31,7 @@ if ($full) {
 	));
 	$info .= "<tr><td class='elggchat-chatsession-text'>" . $delete_session . "</td></tr>";
 
-	$info .= "<tr><td class='elggchat-chatsession-text'><label>" . elgg_echo('elggchat:post_admin_message');
+	$info .= "<tr><td class='elggchat-chatsession-text'><label>" . elgg_echo('elggchat:post_admin_message') . "</label>";
 	$form_body = elgg_view('input/text', array('name' => 'admin_message'));
 	$form_body .= elgg_view('input/submit', array('value' => elgg_echo('submit')));
 	$action_url = elgg_get_site_url() . "action/elggchat/admin_message?chatsession=".$session->getGUID();
@@ -105,7 +105,7 @@ if ($full) {
 		'is_trusted' => true,
 		'class' => 'elgg-button elgg-button-action'
 	)) . "<br><br>";
-	$delete_session = elgg_view("output/confirmlink",array(
+	$delete_session = elgg_view("output/url",array(
 		'href' => elgg_get_site_url() . "action/elggchat/delete_session?chatsession=" . $session->getGUID(),
 		'text' => elgg_echo('elggchat:chatsession_delete'),
 		'confirm' => elgg_echo('elggchat:chatsession_deleteconfirm'),

@@ -6,11 +6,11 @@
  *
  * @package elggchat
  * @author ColdTrick IT Solutions
- * @copyright Coldtrick IT Solutions 2009-2014
+ * @copyright Coldtrick IT Solutions 2009-2015
  * @link http://www.coldtrick.com/
  *
  * for Elgg 1.8 and newer by iionly (iionly@gmx.de)
- * @copyright iionly 2014
+ * @copyright iionly 2014-2015
  * @link https://github.com/iionly
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  */
@@ -26,14 +26,6 @@ function elggchat_init() {
 
 	elgg_extend_view('css/admin', 'elggchat/admin_css');
 	elgg_extend_view('css/elgg','elggchat/css');
-
-	$js_elggchat_sound = elgg_get_simplecache_url('js', 'elggchat/buzz.js');
-	elgg_register_simplecache_view('js/elggchat/buzz.js');
-	elgg_register_js('elggchat_sound', $js_elggchat_sound, 'head', 400);
-
-	elgg_define_js('elggchat_scroll', array(
-		'src' => elgg_get_site_url() . 'mod/elggchat/views/default/js/elggchat/jquery.scrollTo.js',
-	));
 
 	if (elgg_is_logged_in()) {
 		if (elgg_get_plugin_user_setting("enableChat", 0, "elggchat") != "no") {

@@ -1,12 +1,12 @@
-Elggchat for Elgg 1.9
-Latest Version: 1.9.2
-Released: 2014-09-12
+Elggchat for Elgg 1.10
+Latest Version: 1.10.3
+Released: 2015-02-14
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (c) iionly (for Elgg 1.8 and newer), ColdTrick IT Solutions
 
 
-This is an updated, bug-fixed and slightly improved version of the Elggchat plugin originally by Coldtrick IT Solutions (http://community.elgg.org/plugins/384910/0.4.5/elggchat). This version of Elggchat is intended for Elgg 1.9.
+This is an updated, bug-fixed and slightly improved version of the Elggchat plugin originally by Coldtrick IT Solutions (https://community.elgg.org/plugins/384910). This version of Elggchat is intended for Elgg 1.10.
 
 The Elggchat plugin provides a chat/instant messaging feature based completely on the Elgg platform. Start chatting from the profile icon of community site member, or by selecting a friend from the friendpicker on the chat toolbar. Sessions will be shown on the chat toolbar.
 
@@ -27,7 +27,7 @@ What "Only my friends can contact me" means within the Elggchat plugin
 
 By default the friend relationship of Elgg is one-directional, i.e. if you add another member as friend the other members does not make you automatically a friends, too. Now you might not want to chat with everyone who made you a friend without you being able to intervene. For privacy reasons the option "Only my friends can contact me" of the user setting "Allow the following to contact me by chat" means that only these members who you made a friend can contact you. From the other way round you might not be able to invite a member for chatting you made a friends because this member did not make you a friend, too.
 
-To avoid the confusion due to the Elgg default one-directional friending (better called "following") I would suggest using the Friend request plugin (http://community.elgg.org/plugins/384965/3.3/friend-request). Using the Friend request plugin will make friending a two-way relationship (a site member can be sure that another member he is a friend with made him a friend, too, and can be invited for chatting). As friending with the Friend request plugin is by permission only the privacy of the members is considered - if you don't want to be friend with someone simply decline the request and the other member.
+To avoid the confusion due to the Elgg default one-directional friending (better called "following") I would suggest using the Friend request plugin (https://community.elgg.org/plugins/384965). Using the Friend request plugin will make friending a two-way relationship (a site member can be sure that another member he is a friend with made him a friend, too, and can be invited for chatting). As friending with the Friend request plugin is by permission only the privacy of the members is considered - if you don't want to be friend with someone simply decline the request and the other member.
 
 
 
@@ -37,7 +37,7 @@ The Elggchat plugin can be downloaded for free but offering a chat feature on yo
 
 - The Elggchat plugin is very likely too much on shared servers. Don't risk getting in trouble with your webhoster. Or in other words: use the Elggchat plugin on shared servers on your own risk!
 - The Elggchat plugin most likely suitable for small to medium Elgg community sites only. Depending on your server hardware / hosting plan you might be able to use it also on larger sites with a higher number of concurrent users (i.e. higher number of concurrent chat sessions). I would suggest to monitor the server load closely after installing the Elggchat plugin to make sure that it's not causing too much load. I'm afraid there's not much you can do, if the load is getting too high apart from looking for another solution for offering a chat feature on your site.
-- Consider using the No logging plugin (http://community.elgg.org/plugins/1441338/1.8.0/elgg-1819-no-logging). The chat messages are saved as Elgg annotations each. By default Elgg creates for each annotations log entries in its Elgg log. The creation of all the log entries for the chat messages can create some additional server load and also result in an increased size of the Elgg log table. When using the No logging plugin there won't be any log entries created anymore for the Elgg chats. But there won't be any log entries for any other user actions on your site either! So, you have to decide for yourself, if you need the Elgg log capabilities or not.
+- Consider using the No logging plugin (https://community.elgg.org/plugins/1441338). The chat messages are saved as Elgg annotations each. By default Elgg creates for each annotations log entries in its Elgg log. The creation of all the log entries for the chat messages can create some additional server load and also result in an increased size of the Elgg log table. When using the No logging plugin there won't be any log entries created anymore for the Elgg chats. But there won't be any log entries for any other user actions on your site either! So, you have to decide for yourself, if you need the Elgg log capabilities or not.
 
 
 
@@ -53,6 +53,13 @@ Additional configuration: for the chat session cleanup to work Elgg's hourly cro
 
 
 Changelog (iionly)
+
+1.10.3 (iionly):
+
+- Updated for Elgg 1.10 based on version 1.9.2,
+- Updated to jquery.scrollTo JS lib version 1.4.14 and modified jquery.scrollTo.js to be cleanly loaded as AMD module,
+- Updated to buzz JS lib version 1.1.18 and modified buzz.js to be loaded as AMD module,
+- Fix of deprecation issues occuring on Elgg 1.10 (namely changing output/confirmlink view to output/url view).
 
 1.9.2
 - Version 1.8.2 updated for Elgg 1.9.
