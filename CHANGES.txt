@@ -1,0 +1,98 @@
+== Changelog ==
+
+=== 1.10.4 (iionly) ===
+
+- Conversion of inline JS code for chat session handling into AMD module.
+
+=== 1.10.3 (iionly) ===
+
+- Updated for Elgg 1.10 based on version 1.9.2,
+- Updated to jquery.scrollTo JS lib version 1.4.14 and modified jquery.scrollTo.js to be cleanly loaded as AMD module,
+- Updated to buzz JS lib version 1.1.18 and modified buzz.js to be loaded as AMD module,
+- Fix of deprecation issues occuring on Elgg 1.10 (namely changing output/confirmlink view to output/url view).
+
+=== 1.9.2 ===
+
+- Version 1.8.2 updated for Elgg 1.9.
+
+=== 1.8.2 ===
+
+- New admin option: optionally keep all chat session logs (manual deletion still possible if this option is enabled),
+- CSS fixes to prevent layout issues (mainly changes of font style) by a theme plugin installed,
+- Layout adjustments of chat toolbar (most noticeable: chat sessions aligned right) for better results on smaller screens (though it might still not work on all mobile devices - especially older ones).
+
+=== 1.9.1 ===
+
+- Version 1.8.1 updated for Elgg 1.9.
+
+=== 1.8.1 ===
+
+- Fix for chat toolbar and chat sessions to correctly work for users with no friends (thanks to Brett for reporting).
+
+=== 1.9.0 ===
+
+- Version 1.8.0 updated for Elgg 1.9.
+
+=== 1.8.0 ===
+
+- Initial release: updated, cleaned-up, bugfixed and slightly improved version of Elggchat to work on Elgg 1.8.
+
+
+== Version history (ColdTrick IT Solutions) ==
+
+=== 0.4.5 ===
+
+- added: sound on new chatsession or on new message in minimized session (only once) (admin configurable)
+- added: flashing of new sessions or on new message in minimized session (admin configurable)
+- added: count of total members of chatsession
+- added: Dutch translation
+- added: extendable view ("elggchat/extensions") that allows other plugins to add stuff to the toolbar
+- added: admin option for enabling/disabling extensions (all on or all off)
+- added: user setting to configure who can contact you (effects only profile icon menu)
+- changed: friendspicker now differs between online and offline users
+- changed: cleaned up the language files
+- fixed: friendspicker not showing more than 50 friends
+- fixed: Cleanup cron not running (wrong interval)
+- fixed: caching of js/css causing trouble
+- fixed: css conflict with 'online' plugin
+
+=== 0.4 ===
+
+- added: admin configurable online/offline detection (e.g. last action < 60 secs is active, 60 - 600 secs is idle and > 600 secs is offline)
+- added: sessions will change color if new messages arrived
+- added: on refresh open session will be remembered
+- added: remembering of chattoolbar presentation
+- added: admin option for retention of chatsession data
+- added: user leaves all chat session on logoff
+- added: user option for disabling the chatbar
+- changed: js now in the right place (caching)
+- changed: revamped the interface
+- changed: chatsessions stick to bar
+- changed: polling mechanisme (more efficient, reduced database queries, reduced connections to webserver)
+- removed: custom jQuery (lost over 200k code :)
+- removed: invited mechanisme (no difference between invites and chatmembers)
+- removed: a lot of css (hopefully better browser support)
+
+=== 0.3 ===
+
+- added: online/offline detection based on last_action under 600 sec (elgg default)
+- added: modify chatwindow titles dynamicly (on session refresh)
+- added: re-introduction of polling interval slowdown (less activity, slower polling, reduced serverload)
+- fixed: change order of sessions on toolbar
+- fixed: windows stick at their position
+- fixed: friendspicker not correctly displayed in IE
+- fixed: a lot of css issue's
+
+=== 0.2 ===
+
+- added: chattoolbar (resides at bottom of the window)
+- added: friendspicker on toolbar (click a friend to start a session)
+- added: shows session info on join (only for the person who joins)
+- changed: all js in a separate file
+- fixed: emoticons now animate every time
+- fixed: invite friends shows already invited friends
+- fixed: invite friends shows max of 10 friends
+
+=== 0.1 ===
+
+- first release to the public

@@ -169,9 +169,9 @@ function elggchat_user_hover_menu($hook, $type, $return, $params) {
 			$allowed = true;
 		}
 		if($allowed) {
-			$url = "javascript:startSession(" . $user->guid . ");";
-			$item = new ElggMenuItem('elggchat_hover', elgg_echo("elggchat:chat:profile:invite"), $url);
+			$item = new ElggMenuItem('elggchat-hover', elgg_echo("elggchat:chat:profile:invite"), '#');
 			$item->setSection('action');
+			$item->{"data-userguid"} = "{$user->guid}";
 			$return[] = $item;
 		}
 	}
