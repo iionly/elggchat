@@ -47,7 +47,7 @@ if (!empty($user) && $user instanceof ElggUser) {
 	}
 
 	if ($link) {
-		$result .= "<td class='chatmemberinfo'><a href='" . $user->getUrl() . "' title='" . $user->name . "' rel='" . $user->guid . "'>" . $user->name . "</a></td>";
+		$result .= "<td class='chatmemberinfo'><a href='" . $user->getUrl() . "' title='" . $user->name . "' rel='" . $user->guid . "' data-userguid='" . $user->guid . "'>" . $user->name . "</a></td>";
 	} else {
 		$result .= "<td class='chatmemberinfo'>". $user->name . "</td>";
 	}

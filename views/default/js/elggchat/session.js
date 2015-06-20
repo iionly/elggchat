@@ -63,7 +63,7 @@ define(function(require) {
 			$("#elggchat_friends_picker .chatmemberinfo").each(function(){
 				var friend = $(this).find("a");
 				if(!($("#" + sessionid + " .chatmembers a[rel='" + friend.attr('rel') + "']").length > 0)){
-					newFriend = "<a href='#' data-friend='" + friend.attr('rel') + "'>";
+					newFriend = "<a href='#' data-friend='" + friend.attr('rel') + "' data-sessionid='" + sessionid + "'>";
 					newFriend += friend.html();
 					newFriend += "</a><br />";
 					currentChatWindow.data('sessionid', sessionid);
@@ -414,8 +414,8 @@ define(function(require) {
 		toggleFriendsPicker();
 	});
 
-	$('#elggchat_toolbar').on('click', '.chatmembersfunctions_invite', function(){
-		var friend = $(this).find("a").data('friend');
+	$('#elggchat_toolbar').on('click', '.chatmembersfunctions_invite a', function(){
+		var friend = $(this).data('friend');
 		var sessionid = $(this).data('sessionid');
 		addFriend(sessionid, friend);
 	});
@@ -435,9 +435,9 @@ define(function(require) {
 		inviteFriends(sessionid);
 	});
 
-	$('#elggchat_toolbar').on('click', '#elggchat_friends_picker', function(){
-		var friend = $(this).find("a");
-		startSession(friend.attr('rel'));
+	$('#elggchat_toolbar').on('click', '#elggchat_friends_picker a', function(){
+		var userguid = $(this).data('userguid');
+		startSession(userguid);
 	});
 
 	$(document).on('click', '.elgg-menu-item-elggchat-hover', function(){

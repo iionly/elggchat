@@ -18,7 +18,6 @@
 return array(
 	'admin:administer_utilities:elggchat' => 'ElggChat',
 	'elggchat' => "ElggChat",
-	'elggchat:title' => "ElggChat",
 	'elggchat:chat:profile:invite' => "Zum Chatten einladen",
 	'elggchat:chat:send' => "Senden",
 
@@ -77,20 +76,23 @@ return array(
 	'elggchat:admin:settings:maxchatupdateinterval' => "Nach 10 Aktualisierungsintervallen ohne neue Daten (\"idle\"), wird das Aktualisierungsintervall verdoppelt bis dieses Maximum (in Sekunden) erreicht ist",
 	'elggchat:admin:settings:enable_sounds' => "Soundausgabe bei neuen Nachrichten aktivieren (nur wenn Chat-Fenster minimiert ist)",
 	'elggchat:admin:settings:enable_flashing' => "Blinken bei neuen Nachrichten aktivieren (nur wenn Chat-Fenster minimiert ist)",
-	'elggchat:admin:settings:enable_extensions' => "Erweiterungen aktivieren (das ElggChat-Plugin selbst enthält keine Erweiterungen. Wenn diese Option aktiviert ist, ist es aber anderen Plugins möglich, durch Erweiterung der View \"elggchat/extensions\" eigene Funktionalität zur ElggChat-Leiste hinzuzufügen)",
+	'elggchat:admin:settings:enable_extensions' => "Erweiterungen aktivieren (das ElggChat-Plugin selbst enthält keine Erweiterungen. Wenn diese Option aktiviert ist, ist es aber anderen Plugins möglich, durch Erweiterung der View \"elggchat/extensions\" eigene Funktionalität zur Chat-Leiste hinzuzufügen)",
 
 	'elggchat:admin:settings:online_status:active' => "Max. Zeit (in Sekunden), bis ein Chat-Teilnehmer als pausierend (\"idle\") betrachtet wird",
 	'elggchat:admin:settings:online_status:inactive' => "Max. Zeit (in Sekunden), bis ein Chat-Teilnehmer als inaktiv betrachtet wird",
 
 	// User settings
-	'elggchat:usersettings:enable_chat' => "ElggChat-Toolbar aktivieren?",
-	'elggchat:usersettings:allow_contact_from' => "Folgende Mitglieder dürfen mich über ElggChat kontaktieren",
+	'elggchat:usersettings' => 'Chat-Einstellungen',
+	'elggchat:usersettings:enable_chat' => "Chat-Toolbar aktivieren? ",
+	'elggchat:usersettings:allow_contact_from' => "Welche Mitglieder dürfen mich kontaktieren? ",
 	'elggchat:usersettings:allow_contact_from:all' => "Alle können mich kontaktieren",
 	'elggchat:usersettings:allow_contact_from:friends' => "Nur Freunde dürfen mich kontaktieren",
 	'elggchat:usersettings:allow_contact_from:none' => "Niemand darf mich kontaktieren",
-	'elggchat:usersettings:show_offline_user' => "Mitglieder, die offline sind, anzeigen",
+	'elggchat:usersettings:show_offline_user' => "Mitglieder, die offline sind, anzeigen? ",
+	'elggchat:usersettings:save:success' => 'Deine Chat-Einstellungen wurden gespeichert.',
+	'elggchat:usersettings:save:error' => 'Beim Speichern Deiner Chat-Einstellungen ist ein Fehler aufgetreten.',
 
 	// Toolbar actions
-	'elggchat:toolbar:minimize' => "ElggChat-Toolbar minimieren",
-	'elggchat:toolbar:maximize' => "ElggChat-Toolbar maximieren"
+	'elggchat:toolbar:minimize' => "Chat-Toolbar minimieren",
+	'elggchat:toolbar:maximize' => "Chat-Toolbar maximieren"
 );

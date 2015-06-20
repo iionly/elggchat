@@ -1,8 +1,8 @@
 Elggchat for Elgg 1.10 + 1.11
 =============================
 
-Latest Version: 1.10.4  
-Released: 2015-05-08  
+Latest Version: 1.10.5  
+Released: 2015-06-19  
 Contact: iionly@gmx.de  
 License: GNU General Public License version 2  
 Copyright: (c) iionly (for Elgg 1.8 and newer), ColdTrick IT Solutions  

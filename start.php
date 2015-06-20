@@ -35,6 +35,10 @@ function elggchat_init() {
 
 	elgg_register_admin_menu_item('administer', 'elggchat', 'administer_utilities');
 
+	elgg_register_page_handler('elggchat', 'elggchat_page_handler');
+
+	elgg_register_plugin_hook_handler('register', 'menu:page', 'elggchat_usersettings_page');
+
 	// Extend avatar hover menu
 	elgg_register_plugin_hook_handler('register', 'menu:user_hover', 'elggchat_user_hover_menu');
 
@@ -54,9 +58,36 @@ function elggchat_init() {
 	elgg_register_action("elggchat/get_smiley", "$action_path/get_smiley.php", "logged_in");
 	elgg_register_action("elggchat/admin_message", "$action_path/admin_message.php", "admin");
 	elgg_register_action("elggchat/delete_session", "$action_path/delete_session.php", "admin");
+	elgg_register_action("elggchat_usersettings/save", "$action_path/save.php", "logged_in");
 
 	// Logout event handler
 	elgg_register_event_handler('logout:before', 'user', 'elggchat_logout_handler');
+}
+
+function elggchat_page_handler($page) {
+	gatekeeper();
+	$current_user = elgg_get_logged_in_user_entity();
+
+	if (!isset($page[0])) {
+		$page[0] = 'usersettings';
+	}
+	if (!isset($page[1])) {
+		forward("elggchat/{$page[0]}/{$current_user->username}");
+	}
+
+	$user = get_user_by_username($page[1]);
+	if (($user->guid != $current_user->guid) && !$current_user->isAdmin()) {
+		forward();
+	}
+
+	switch ($page[0]) {
+		case 'usersettings':
+			require elgg_get_plugins_path() . 'elggchat/index.php';
+			break;
+		default:
+			return false;
+	}
+	return true;
 }
 
 // Session cleanup by cron
@@ -143,6 +174,21 @@ function elggchat_logout_handler($event, $object_type, $object) {
 	elgg_set_ignore_access($access);
 
 	return true;
+}
+
+function elggchat_usersettings_page($hook, $type, $return, $params) {
+	if (elgg_get_context() == "settings" && elgg_get_logged_in_user_guid()) {
+
+		$user = elgg_get_page_owner_entity();
+		if (!$user) {
+			$user = elgg_get_logged_in_user_entity();
+		}
+
+		$item = new ElggMenuItem('elggchat_usersettings', elgg_echo('elggchat:usersettings'), "elggchat/usersettings/{$user->username}");
+		$return[] = $item;
+	}
+
+	return $return;
 }
 
 // Add to the user hover menu

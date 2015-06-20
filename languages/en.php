@@ -18,7 +18,6 @@
 return array(
 	'admin:administer_utilities:elggchat' => 'ElggChat',
 	'elggchat' => "ElggChat",
-	'elggchat:title' => "ElggChat",
 	'elggchat:chat:profile:invite' => "Invite for chat",
 	'elggchat:chat:send' => "Send",
 
@@ -77,20 +76,23 @@ return array(
 	'elggchat:admin:settings:maxchatupdateinterval' => "Every 10 times of polling with no data returned the polling interval will be multiplied until it reaches this maximum (seconds)",
 	'elggchat:admin:settings:enable_sounds' => "Enable sounds for new messages (only plays when chat window is minimized)",
 	'elggchat:admin:settings:enable_flashing' => "Enable flashing for new messages (only blinks when chat window is minimized)",
-	'elggchat:admin:settings:enable_extensions' => "Enable extensions (the ElggChat plugin comes with no extensions itself but it is possible for other plugins to add some functionality on their own to the ElggChat bar by extending the view \"elggchat/extensions\", if this option is enabled)",
+	'elggchat:admin:settings:enable_extensions' => "Enable extensions (the ElggChat plugin comes with no extensions itself but it is possible for other plugins to add some functionality on their own to the Chat bar by extending the view \"elggchat/extensions\", if this option is enabled)",
 
 	'elggchat:admin:settings:online_status:active' => "Max number of seconds before user will be idle",
 	'elggchat:admin:settings:online_status:inactive' => "Max number of seconds before user will be inactive",
 
 	// User settings
-	'elggchat:usersettings:enable_chat' => "Enable ElggChat Toolbar? ",
-	'elggchat:usersettings:allow_contact_from' => "Allow the following to contact me by chat: ",
+	'elggchat:usersettings' => 'Chat settings',
+	'elggchat:usersettings:enable_chat' => "Enable Chat Toolbar? ",
+	'elggchat:usersettings:allow_contact_from' => "Who is allowed to contact me by chat? ",
 	'elggchat:usersettings:allow_contact_from:all' => "Everyone can contact me",
 	'elggchat:usersettings:allow_contact_from:friends' => "Only my friends can contact me",
 	'elggchat:usersettings:allow_contact_from:none' => "Nobody can contact me",
 	'elggchat:usersettings:show_offline_user' => "Show offline members? ",
+	'elggchat:usersettings:save:success' => 'Your chat settings were saved successfully.',
+	'elggchat:usersettings:save:error' => 'There was an error saving your chat settings.',
 
 	// Toolbar actions
-	'elggchat:toolbar:minimize' => "Minimize ElggChat Toolbar",
-	'elggchat:toolbar:maximize' => "Maximize ElggChat Toolbar",
+	'elggchat:toolbar:minimize' => "Minimize Chat Toolbar",
+	'elggchat:toolbar:maximize' => "Maximize Chat Toolbar",
 );

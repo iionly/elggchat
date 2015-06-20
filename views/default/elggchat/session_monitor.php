@@ -38,7 +38,7 @@ if (empty($flash)) {
 
 $offlineuser = elgg_get_plugin_user_setting("show_offline_user", 0, "elggchat");
 
-echo "<div id='elggchat_toolbar' data-basesec='{$basesec}' data-maxsec='{$maxsecs}' data-sound='{$sound}' data-flash='{$flash} data-offlineuser='{$offlineuser}'>";
+echo "<div id='elggchat_toolbar' data-basesec='{$basesec}' data-maxsec='{$maxsecs}' data-sound='{$sound}' data-flash='{$flash}' data-offlineuser='{$offlineuser}'>";
 	echo '<div id="elggchat_toolbar_right">';
 		echo '<div id="elggchat_sessions"></div>';
 

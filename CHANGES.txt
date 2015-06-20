@@ -1,5 +1,11 @@
 == Changelog ==
 
+=== 1.10.5 (iionly) ===
+
+- Revision of usersettings page,
+- Blinking of minimized chatsession window on arrival of a new message works again (of course needs to be enabled in plugin settings),
+- Get the correct user again (when inviting for a new chatsession) if more than a single user / friend is currently available for chat.
+
 === 1.10.4 (iionly) ===
 
 - Conversion of inline JS code for chat session handling into AMD module.
