@@ -80,10 +80,12 @@ define(function(require) {
 				chatsession: sessionid,
 				friend: friend
 			},
-			success: function() {
-				$("#" + sessionid + " .chatmembersfunctions_invite").toggle();
-				checkForSessions();
-				$("#" + sessionid + " input[name='chatmessage']").focus();
+			success: function(json) {
+				if (json.success) {
+					$("#" + sessionid + " .chatmembersfunctions_invite").toggle();
+					checkForSessions();
+					$("#" + sessionid + " input[name='chatmessage']").focus();
+				}
 			}
 		});
 	}
@@ -99,9 +101,11 @@ define(function(require) {
 				data: {
 					chatsession: sessionid
 				},
-				success: function() {
-					$("#" + sessionid).remove();
-					checkForSessions();
+				success: function(json) {
+					if (json.success) {
+						$("#" + sessionid).remove();
+						checkForSessions();
+					}
 				}
 			});
 		}

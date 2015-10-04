@@ -39,5 +39,9 @@ if (check_entity_relationship($sessionId, ELGGCHAT_MEMBER, $userId)) {
 		$session->delete();
 	}
 }
+
+$response = array('success' => true);
+echo json_encode($response);
+
 exit();
 ?>

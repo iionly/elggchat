@@ -26,6 +26,9 @@ if (($invite_user = get_user($inviteId)) && ($session = get_entity($sessionId)) 
 
 		$session->annotate(ELGGCHAT_SYSTEM_MESSAGE, elgg_echo('elggchat:action:invite', array($user->name, $invite_user->name)), ACCESS_LOGGED_IN, $userId);
 		$session->save();
+
+		$response = array('success' => true);
+		echo json_encode($response);
 	}
 }
 exit();

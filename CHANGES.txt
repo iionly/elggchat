@@ -1,52 +1,69 @@
-== Changelog ==
+Changelog
+=========
 
-=== 1.10.5 (iionly) ===
+1.10.6
+------
+
+- composer.json added.
+
+1.10.5
+------
 
 - Revision of usersettings page,
 - Blinking of minimized chatsession window on arrival of a new message works again (of course needs to be enabled in plugin settings),
 - Get the correct user again (when inviting for a new chatsession) if more than a single user / friend is currently available for chat.
 
-=== 1.10.4 (iionly) ===
+1.10.4
+------
 
 - Conversion of inline JS code for chat session handling into AMD module.
 
-=== 1.10.3 (iionly) ===
+1.10.3
+------
 
 - Updated for Elgg 1.10 based on version 1.9.2,
 - Updated to jquery.scrollTo JS lib version 1.4.14 and modified jquery.scrollTo.js to be cleanly loaded as AMD module,
 - Updated to buzz JS lib version 1.1.18 and modified buzz.js to be loaded as AMD module,
 - Fix of deprecation issues occuring on Elgg 1.10 (namely changing output/confirmlink view to output/url view).
 
-=== 1.9.2 ===
+1.9.2
+-----
 
 - Version 1.8.2 updated for Elgg 1.9.
 
-=== 1.8.2 ===
+1.8.2
+-----
 
 - New admin option: optionally keep all chat session logs (manual deletion still possible if this option is enabled),
 - CSS fixes to prevent layout issues (mainly changes of font style) by a theme plugin installed,
 - Layout adjustments of chat toolbar (most noticeable: chat sessions aligned right) for better results on smaller screens (though it might still not work on all mobile devices - especially older ones).
 
-=== 1.9.1 ===
+1.9.1
+-----
 
 - Version 1.8.1 updated for Elgg 1.9.
 
-=== 1.8.1 ===
+1.8.1
+-----
 
 - Fix for chat toolbar and chat sessions to correctly work for users with no friends (thanks to Brett for reporting).
 
-=== 1.9.0 ===
+1.9.0
+-----
 
 - Version 1.8.0 updated for Elgg 1.9.
 
-=== 1.8.0 ===
+1.8.0
+-----
 
 - Initial release: updated, cleaned-up, bugfixed and slightly improved version of Elggchat to work on Elgg 1.8.
 
 
-== Version history (ColdTrick IT Solutions) ==
+Version history (ColdTrick IT Solutions)
+----------------------------------------
 
-=== 0.4.5 ===
+0.4.5
+-----
 
 - added: sound on new chatsession or on new message in minimized session (only once) (admin configurable)
 - added: flashing of new sessions or on new message in minimized session (admin configurable)
@@ -62,7 +79,8 @@
 - fixed: caching of js/css causing trouble
 - fixed: css conflict with 'online' plugin
 
-=== 0.4 ===
+0.4
+---
 
 - added: admin configurable online/offline detection (e.g. last action < 60 secs is active, 60 - 600 secs is idle and > 600 secs is offline)
 - added: sessions will change color if new messages arrived
@@ -79,7 +97,8 @@
 - removed: invited mechanisme (no difference between invites and chatmembers)
 - removed: a lot of css (hopefully better browser support)
 
-=== 0.3 ===
+0.3
+---
 
 - added: online/offline detection based on last_action under 600 sec (elgg default)
 - added: modify chatwindow titles dynamicly (on session refresh)
@@ -89,7 +108,8 @@
 - fixed: friendspicker not correctly displayed in IE
 - fixed: a lot of css issue's
 
-=== 0.2 ===
+0.2
+---
 
 - added: chattoolbar (resides at bottom of the window)
 - added: friendspicker on toolbar (click a friend to start a session)
@@ -99,6 +119,7 @@
 - fixed: invite friends shows already invited friends
 - fixed: invite friends shows max of 10 friends
 
-=== 0.1 ===
+0.1
+---
 
 - first release to the public
