@@ -73,6 +73,17 @@
 	background: #E4ECF5;
 }
 
+.elgg-icon-elggchatdelete:before {
+	font-size: larger !important;
+	cursor: pointer;
+	content: "\f057";
+}
+
+.elgg-icon-elggchatsessiontoggle:before {
+	cursor: pointer;
+	content: "\f205";
+}
+
 #elggchat_extensions {
 	float: left;
 	height: 25px;
@@ -154,19 +165,58 @@
 }
 
 .toggle_elggchat_toolbar {
-	float:left;
-	width: 15px;
-	height: 25px;
-	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/elggchat/_graphics/minimize.png) repeat-x left center;
+	color: #CCC;
 }
 
-.minimizedToolbar {
-	width: 15px;
-	height: 25px;
-	background-position: right center;
+.toggle_elggchat_toolbar:before {
+	float:left;
+	background: #FFF;
+	cursor: pointer;
+	content: "\f100";
+	width: 16px;
+	height: 23px;
+	padding: 3px 3px 0px;
+	margin: 1px 0px 0px;
+	font-size: 21px;
+	border-top: 1px solid #CCC;
+	border-right: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
 	-moz-border-radius-topright: 5px;
 	-webkit-border-top-right-radius: 5px;
 	border-top-right-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+:focus > .toggle_elggchat_toolbar,
+.toggle_elggchat_toolbar:hover,
+.toggle_elggchat_toolbar-hover {
+	color: #4690D6;
+}
+
+.minimizedToolbar {
+}
+
+.minimizedToolbar:before {
+	float:left;
+	background: #FFF;
+	cursor: pointer;
+	content: "\f101";
+	width: 16px;
+	height: 23px;
+	padding: 3px 3px 0px;
+	margin: 1px 0px 0px;
+	font-size: 21px;
+	border-top: 1px solid #CCC;
+	border-right: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 }
 
 .messageWrapper {
@@ -295,7 +345,7 @@
 .online_status_chat {
 	width: 24px;
 	height: 24px;
-	background: transparent url("<?php echo elgg_get_site_url(); ?>mod/elggchat/_graphics/online_status.png") no-repeat 0 0;
+	background: transparent url(<?= elgg_get_simplecache_url('elggchat/online_status.png'); ?>) no-repeat 0 0;
 }
 
 .online_status_idle {
@@ -314,7 +364,7 @@
 
 .elggchatinput {
 	height: 22px;
-	background: #FFFFFF url("<?php echo elgg_get_site_url(); ?>mod/elggchat/_graphics/chatwindow/chat_input.png") no-repeat 1px 50%;
+	background: #FFFFFF url(<?= elgg_get_simplecache_url('elggchat/chatwindow/chat_input.png'); ?>) no-repeat 1px 50%;
 	color: black;
 	padding: 2px 2px 2px 18px;
 	border-top: 1px solid #DEDEDE;

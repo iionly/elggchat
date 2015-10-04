@@ -188,7 +188,7 @@ define(function(require) {
 
 					var newSession = "";
 
-					newSession += "<div class='elggchat-sessionname' data-sessionid='" + i + "'><a href='#'>" + session.name + "</a><div class='elggchat-session-delete elgg-icon elgg-icon-delete-alt' data-sessionid='" + i + "' style='float:right' title='" + elgg.echo("elggchat:chat:leave") + "'></div></div>";
+					newSession += "<div class='elggchat-sessionname' data-sessionid='" + i + "'><a class='fa elgg-icon-elggchatsessiontoggle' href='#'>" + " " + session.name + "</a><div class='elggchat-session-delete elgg-icon fa elgg-icon-elggchatdelete' data-sessionid='" + i + "' style='float:right' title='" + elgg.echo("elggchat:chat:leave") + "'></div></div>";
 					newSession += "<div class='chatsessiondatacontainer'>";
 					newSession += "<div class='chatsessiondata'>";
 					newSession += "<div class='chatmembers'><table>";

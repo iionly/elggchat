@@ -54,5 +54,5 @@ echo "<div id='elggchat_toolbar' data-basesec='{$basesec}' data-maxsec='{$maxsec
 		echo '</div>';
 	echo '</div>';
 
-	echo '<div id="toggle_elggchat_toolbar" class="toggle_elggchat_toolbar" title="' . elgg_echo("elggchat:toolbar:minimize") . '"></div>';
+	echo '<div id="toggle_elggchat_toolbar" class="fa toggle_elggchat_toolbar" title="' . elgg_echo("elggchat:toolbar:minimize") . '"></div>';
 echo '</div>';

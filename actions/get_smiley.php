@@ -15,7 +15,7 @@
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  */
 
-$base_folder = "elggchat/_graphics/";
+$base_folder = "elggchat/graphics/";
 $smiley = get_input("smiley");
 
 if ($smiley) {
