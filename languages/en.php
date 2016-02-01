@@ -6,11 +6,11 @@
  *
  * @package elggchat
  * @author ColdTrick IT Solutions
- * @copyright Coldtrick IT Solutions 2009-2015
+ * @copyright Coldtrick IT Solutions 2009
  * @link http://www.coldtrick.com/
  *
  * for Elgg 1.8 and newer by iionly (iionly@gmx.de)
- * @copyright iionly 2014-2015
+ * @copyright iionly 2014
  * @link https://github.com/iionly
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  */
@@ -76,6 +76,7 @@ return array(
 	'elggchat:admin:settings:maxchatupdateinterval' => "Every 10 times of polling with no data returned the polling interval will be multiplied until it reaches this maximum (seconds)",
 	'elggchat:admin:settings:enable_sounds' => "Enable sounds for new messages (only plays when chat window is minimized)",
 	'elggchat:admin:settings:enable_flashing' => "Enable flashing for new messages (only blinks when chat window is minimized)",
+	'elggchat:admin:settings:enable_smilies' => "Convert smilies shortcodes within chat messages to animated gif smilies",
 	'elggchat:admin:settings:enable_extensions' => "Enable extensions (the ElggChat plugin comes with no extensions itself but it is possible for other plugins to add some functionality on their own to the Chat bar by extending the view \"elggchat/extensions\", if this option is enabled)",
 
 	'elggchat:admin:settings:online_status:active' => "Max number of seconds before user will be idle",
