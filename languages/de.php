@@ -6,11 +6,11 @@
  *
  * @package elggchat
  * @author ColdTrick IT Solutions
- * @copyright Coldtrick IT Solutions 2009-2015
+ * @copyright Coldtrick IT Solutions 2009
  * @link http://www.coldtrick.com/
  *
  * for Elgg 1.8 and newer by iionly (iionly@gmx.de)
- * @copyright iionly 2014-2015
+ * @copyright iionly 2014
  * @link https://github.com/iionly
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  */
@@ -76,6 +76,7 @@ return array(
 	'elggchat:admin:settings:maxchatupdateinterval' => "Nach 10 Aktualisierungsintervallen ohne neue Daten (\"idle\"), wird das Aktualisierungsintervall verdoppelt bis dieses Maximum (in Sekunden) erreicht ist",
 	'elggchat:admin:settings:enable_sounds' => "Soundausgabe bei neuen Nachrichten aktivieren (nur wenn Chat-Fenster minimiert ist)",
 	'elggchat:admin:settings:enable_flashing' => "Blinken bei neuen Nachrichten aktivieren (nur wenn Chat-Fenster minimiert ist)",
+	'elggchat:admin:settings:enable_smilies' => "Wandle Smilies-Kürzel innerhalb Chat-Nachrichten in Smilies-Bilder (Animated GIFs) um",
 	'elggchat:admin:settings:enable_extensions' => "Erweiterungen aktivieren (das ElggChat-Plugin selbst enthält keine Erweiterungen. Wenn diese Option aktiviert ist, ist es aber anderen Plugins möglich, durch Erweiterung der View \"elggchat/extensions\" eigene Funktionalität zur Chat-Leiste hinzuzufügen)",
 
 	'elggchat:admin:settings:online_status:active' => "Max. Zeit (in Sekunden), bis ein Chat-Teilnehmer als pausierend (\"idle\") betrachtet wird",

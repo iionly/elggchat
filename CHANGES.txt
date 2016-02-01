@@ -1,6 +1,13 @@
 Changelog
 =========
 
+2.0.1
+-----
+
+- New plugin option to enable/disable smilies shortcuts to animated gif smilies within chat messages,
+- Match smilies shortcodes only if there's a space before to avoid false identification of shortcodes (e.g. as part of urls),
+- Adjustment in header sent for animated smilies images (content type added) as some browsers might fail to display the images otherwise (could reproduce this issue myself though).
+
 2.0.0
 -----
 

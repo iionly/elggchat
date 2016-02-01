@@ -6,11 +6,11 @@
  *
  * @package elggchat
  * @author ColdTrick IT Solutions
- * @copyright Coldtrick IT Solutions 2009-2015
+ * @copyright Coldtrick IT Solutions 2009
  * @link http://www.coldtrick.com/
  *
  * for Elgg 1.8 and newer by iionly (iionly@gmx.de)
- * @copyright iionly 2014-2015
+ * @copyright iionly 2014
  * @link https://github.com/iionly
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  */
@@ -74,7 +74,7 @@
 }
 
 .elgg-icon-elggchatdelete:before {
-	font-size: larger !important;
+	font-size: large !important;
 	cursor: pointer;
 	content: "\f057";
 }

@@ -6,11 +6,11 @@
  *
  * @package elggchat
  * @author ColdTrick IT Solutions
- * @copyright Coldtrick IT Solutions 2009-2015
+ * @copyright Coldtrick IT Solutions 2009
  * @link http://www.coldtrick.com/
  *
  * for Elgg 1.8 and newer by iionly (iionly@gmx.de)
- * @copyright iionly 2014-2015
+ * @copyright iionly 2014
  * @link https://github.com/iionly
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  */
@@ -22,6 +22,7 @@ $maxSessionAge = $vars['entity']->maxSessionAge;
 $keepsessions = $vars['entity']->keepsessions;
 $enableSounds = $vars['entity']->enableSounds;
 $enableFlashing = $vars['entity']->enableFlashing;
+$enableSmilies = $vars['entity']->enableSmilies;
 $enableExtensions = $vars['entity']->enableExtensions;
 
 if (empty($vars['entity']->onlinestatus_active)) {
@@ -84,6 +85,12 @@ if (empty($vars['entity']->onlinestatus_inactive)) {
 	<option value="no" <?php if ($enableFlashing != "yes") echo " selected=\"yes\" "; ?>><?php echo elgg_echo("option:no");?></option>
 </select>
 <?php echo elgg_echo('elggchat:admin:settings:enable_flashing'); ?><br />
+
+<select name="params[enableSmilies]">
+	<option value="yes" <?php if ($enableSmilies == "yes") echo " selected=\"yes\" "; ?>><?php echo elgg_echo("option:yes");?></option>
+	<option value="no" <?php if ($enableSmilies != "yes") echo " selected=\"yes\" "; ?>><?php echo elgg_echo("option:no");?></option>
+</select>
+<?php echo elgg_echo('elggchat:admin:settings:enable_smilies'); ?><br />
 
 <select name="params[enableExtensions]">
 	<option value="yes" <?php if ($enableExtensions == "yes") echo " selected=\"yes\" "; ?>><?php echo elgg_echo("option:yes");?></option>
