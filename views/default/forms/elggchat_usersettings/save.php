@@ -4,15 +4,15 @@ $user = $vars['user'];
 
 $enable_chat = elgg_get_plugin_user_setting('enableChat', $user->getGUID(), 'elggchat');
 if (empty($enable_chat)) {
-	$enable_chat == "yes";
+	$enable_chat = "yes";
 }
 $allow_contact_from = elgg_get_plugin_user_setting('allow_contact_from', $user->getGUID(), 'elggchat');
 if (empty($allow_contact_from)) {
-	$allow_contact_from == "friends";
+	$allow_contact_from = "friends";
 }
 $show_offline_user = elgg_get_plugin_user_setting('show_offline_user', $user->getGUID(), 'elggchat');
 if (empty($show_offline_user)) {
-	$show_offline_user == "no";
+	$show_offline_user = "no";
 }
 
 echo "<div class='mbm'>" . elgg_echo('elggchat:usersettings:enable_chat');
