@@ -1,6 +1,11 @@
 Changelog
 =========
 
+2.0.2
+-----
+
+- Initialize chat user settings with default values correctly if user hasn't saved the user settings yet (thanks to oseg for reporting).
+
 2.0.1
 -----
 
