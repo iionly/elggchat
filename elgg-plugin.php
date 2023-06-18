@@ -5,11 +5,7 @@ define("ELGGCHAT_SESSION_SUBTYPE", "elggchat_session");
 define("ELGGCHAT_SYSTEM_MESSAGE", "elggchat_system_message");
 define("ELGGCHAT_MESSAGE", "elggchat_message");
 
-require_once(dirname(__FILE__) . '/lib/events.php');
-require_once(dirname(__FILE__) . '/lib/hooks.php');
-
 return [
-	'bootstrap' => \ElggchatBootstrap::class,
 	'actions' => [
 		'elggchat/create' => [
 			'access' => 'logged_in',
@@ -62,9 +58,43 @@ return [
 			'resource' => 'elggchat/usersettings',
 		],
 	],
+	'hooks' => [
+		'register' => [
+			'menu:page' => [
+				"\ElggchatHooks::elggchat_administer_utilities_page" => [],
+				"\ElggchatHooks::elggchat_usersettings_page" => [],
+			],
+			'menu:user_hover' => [
+				"\ElggchatHooks::elggchat_user_hover_menu" => [],
+			],
+		],
+		'cron' => [
+			'hourly' => [
+				"\ElggchatHooks::elggchat_session_cleanup" => [],
+			],
+		],
+	],
+	'events' => [
+		'logout:before' => [
+			'user' => [
+				"\ElggchatEvents::elggchat_logout_handler" => [],
+			],
+		],
+	],
 	'views' => [
 		'default' => [
 			'elggchat/' => __DIR__ . '/graphics',
+		],
+	],
+	'view_extensions' => [
+		'css/elgg' => [
+			'elggchat/css' => [],
+		],
+		'css/admin' => [
+			'elggchat/admin_css' => [],
+		],
+		'page/elements/footer' => [
+			'elggchat/session_monitor' => [],
 		],
 	],
 ];
