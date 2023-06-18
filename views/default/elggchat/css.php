@@ -65,6 +65,10 @@
 	text-decoration: underline;
 }
 
+.elggchat-sessionname {
+	height: 1.0rem;
+}
+
 .elggchat_session_new_messages {
 	background: #333333;
 }
@@ -173,7 +177,7 @@
 	background: #FFF;
 	cursor: pointer;
 	content: "\f100";
-	width: 16px;
+	width: 28px;
 	height: 23px;
 	padding: 3px 3px 0px;
 	margin: 1px 0px 0px;
@@ -203,7 +207,7 @@
 	background: #FFF;
 	cursor: pointer;
 	content: "\f101";
-	width: 16px;
+	width: 28px;
 	height: 23px;
 	padding: 3px 3px 0px;
 	margin: 1px 0px 0px;
@@ -376,9 +380,11 @@
 	color: black;
 	font-size: 100%;
 	padding: 2px;
+	height: 1.0rem;
 }
 
 .elggchatinput input:focus {
 	border: none;
 	background: none;
+	height: 1.0rem;
 }

@@ -22,24 +22,9 @@ if (!(elgg_is_logged_in() && (elgg_get_plugin_user_setting("enableChat", "yes", 
 }
 
 $basesec = elgg_get_plugin_setting("chatUpdateInterval", "elggchat");
-if (!$basesec) {
-	$basesec = 5;
-}
 $maxsecs = elgg_get_plugin_setting("maxChatUpdateInterval", "elggchat");
-if (!$maxsecs) {
-	$maxsecs = 30;
-}
-
 $sound = elgg_get_plugin_setting("enableSounds", "elggchat");
-if (empty($sound)) {
-	$sound = "no";
-}
-
 $flash = elgg_get_plugin_setting("enableFlashing", "elggchat");
-if (empty($flash)) {
-	$flash = "no";
-}
-
 $offlineuser = elgg_get_plugin_user_setting("show_offline_user", 0, "elggchat");
 
 echo "<div id='elggchat_toolbar' data-basesec='{$basesec}' data-maxsec='{$maxsecs}' data-sound='{$sound}' data-flash='{$flash}' data-offlineuser='{$offlineuser}'>";

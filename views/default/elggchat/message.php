@@ -17,7 +17,7 @@ if ($message->access_id != ACCESS_PRIVATE || $user->guid == elgg_get_logged_in_u
 		$result .= "<div name='message' id='" .  $offset . "' class='messageWrapper'>";
 
 		$result .= "<table><tr><td rowspan='2'>";
-		$result .= elgg_view('output/img', ['src' => elgg_format_url($user->getIconURL('tiny')), 'class' => 'messageIcon']);
+		$result .= elgg_view('output/img', ['src' => htmlspecialchars($user->getIconURL('tiny'), ENT_QUOTES, 'UTF-8', false), 'class' => 'messageIcon']);
 		$result .= "</td><td class='messageName'>" . $user->name . "</td></tr>";
 
 		$result .= "<tr><td>";

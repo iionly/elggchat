@@ -41,13 +41,13 @@ if ($full) {
 	$info .= "<tr><td class='elggchat-chatsession-text'><label>" . elgg_echo('elggchat:session:last_updated') . "</label>" . elgg_get_friendly_time($session->time_updated) . "</td></tr>";
 
 	$info .= "<tr><td class='elggchat-chatsession-text'><label>" . elgg_echo('elggchat:session:chat_participants') . "</label>" . "<br>";
-	$members = elgg_get_entities_from_relationship(['relationship' => ELGGCHAT_MEMBER, 'relationship_guid' => $session->getGUID()]);
+	$members = elgg_get_entities(['relationship' => ELGGCHAT_MEMBER, 'relationship_guid' => $session->getGUID()]);
 	if ($members) {
 		$info .= "<table>";
 		foreach($members as $member) {
 			$result = "";
 			$result .= "<tr class='chatmember'>";
-			$result .= "<td width='30px'>".elgg_view('output/img', ['src' => elgg_format_url($member->getIconURL('tiny')), 'class' => 'messageIcon'])."</td>";
+			$result .= "<td width='30px'>".elgg_view('output/img', ['src' => htmlspecialchars($member->getIconURL('tiny'), ENT_QUOTES, 'UTF-8', false), 'class' => 'messageIcon'])."</td>";
 			$result .= "<td class='chatmemberinfo'>"."<a href='" . $member->getUrl() . "'>" . $member->name . "</a></td>";
 			$result .= "</tr>";
 			$info .= $result;
@@ -59,7 +59,7 @@ if ($full) {
 
 	$info .= "<tr><td class='elggchat-chatsession-text'><label>" . elgg_echo('elggchat:session:session_messages') . "</label>" . "<br>";
 	$messages = elgg_get_annotations([
-		'annotation_names' => array(ELGGCHAT_MESSAGE, ELGGCHAT_SYSTEM_MESSAGE),
+		'annotation_names' => [ELGGCHAT_MESSAGE, ELGGCHAT_SYSTEM_MESSAGE],
 		'guid' => $session->guid,
 		'limit' => false,
 		'order' => 'desc',
@@ -72,7 +72,7 @@ if ($full) {
 				$result .= "<div name='message' id='" .  $offset . "' class='messageWrapper'>";
 
 				$result .= "<table><tr><td width='30px' rowspan='2'>";
-				$result .= elgg_view('output/img', ['src' => elgg_format_url($member->getIconURL('tiny')), 'class' => 'messageIcon']);
+				$result .= elgg_view('output/img', ['src' => htmlspecialchars($member->getIconURL('tiny'), ENT_QUOTES, 'UTF-8', false), 'class' => 'messageIcon']);
 				$result .= "</td><td class='messageName'>" . $member->name . ", " . elgg_get_friendly_time($message->time_created) . "</td></tr>";
 
 				$result .= "<tr><td>";
@@ -118,7 +118,7 @@ if ($full) {
 	$info .= "<td class='elggchat-chatsession-text'>" . $session_details . $delete_session . "</td>";
 	$info .= "<td class='elggchat-chatsession-text'>";
 	$info .= "<label>" . elgg_echo('elggchat:session:last_updated') . "</label>" . elgg_get_friendly_time($session->time_updated) . "<br>";
-	$members_count = elgg_get_entities_from_relationship(['relationship' => ELGGCHAT_MEMBER, 'relationship_guid' => $session->getGUID(), 'count' => true]);
+	$members_count = elgg_get_entities(['relationship' => ELGGCHAT_MEMBER, 'relationship_guid' => $session->getGUID(), 'count' => true]);
 	$info .= "<label>" . elgg_echo('elggchat:session:number_chat_participants') . "</label>" . $members_count . "<br>";
 	$messages_count = elgg_get_annotations([
 		'annotation_names' => array(ELGGCHAT_MESSAGE, ELGGCHAT_SYSTEM_MESSAGE),

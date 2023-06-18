@@ -17,11 +17,13 @@
 
 if ($user = elgg_get_logged_in_user_entity()) {
 
-	$chat_sessions_count = elgg_get_entities_from_relationship([
+	$chat_sessions_count = elgg_get_entities([
 		'relationship' => ELGGCHAT_MEMBER,
 		'relationship_guid' => $user->getGUID(),
 		'inverse_relationship' => true,
-		'order_by' => "time_created desc",
+		'order_by' => [
+			new \Elgg\Database\Clauses\OrderByClause("time_created desc"),
+		],
 		'limit' => false,
 		'count' => true,
 	]);
@@ -100,7 +102,7 @@ if ($user = elgg_get_logged_in_user_entity()) {
 	$result["friends"]["online"] = [];
 
 	// Add friends information
-	$friends_count = elgg_get_entities_from_relationship([
+	$friends_count = elgg_get_entities([
 		'relationship' => 'friend',
 		'relationship_guid' => $user->getGUID(),
 		'inverse_relationship' => true,
@@ -108,7 +110,7 @@ if ($user = elgg_get_logged_in_user_entity()) {
 		'count' => true,
 	]);
 	if ($friends_count > 0) {
-		$friends = elgg_get_entities_from_relationship([
+		$friends = elgg_get_entities([
 			'relationship' => 'friend',
 			'relationship_guid' => $user->getGUID(),
 			'inverse_relationship' => true,

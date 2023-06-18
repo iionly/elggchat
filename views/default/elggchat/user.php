@@ -43,7 +43,7 @@ if (!empty($user) && ($user instanceof ElggUser)) {
 	$result .= "<tr class='chatmember'>";
 
 	if ($icon) {
-		$result .= "<td>".elgg_view('output/img', ['src' => elgg_format_url($user->getIconURL($iconSize)), 'class' => 'messageIcon'])."</td>";
+		$result .= "<td>".elgg_view('output/img', ['src' => htmlspecialchars($user->getIconURL($iconSize), ENT_QUOTES, 'UTF-8', false), 'class' => 'messageIcon'])."</td>";
 	}
 
 	if ($link) {

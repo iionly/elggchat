@@ -18,44 +18,14 @@
 $plugin = elgg_extract('entity', $vars);
 
 $chatUpdateInterval = $plugin->chatUpdateInterval;
-if (empty($chatUpdateInterval)) {
-	$chatUpdateInterval = 5;
-}
 $maxChatUpdateInterval = $plugin->maxChatUpdateInterval;
-if (empty($maxChatUpdateInterval)) {
-	$maxChatUpdateInterval = 30;
-}
 $maxSessionAge = $plugin->maxSessionAge;
-if (empty($maxSessionAge)) {
-	$maxSessionAge = 21600;
-}
 $keepsessions = $plugin->keepsessions;
-if (empty($keepsessions)) {
-	$keepsessions = "yes";
-}
 $enableSounds = $plugin->enableSounds;
-if (empty($enableSounds)) {
-	$enableSounds = "yes";
-}
 $enableFlashing = $plugin->enableFlashing;
-if (empty($enableFlashing)) {
-	$enableFlashing = "yes";
-}
 $enableSmilies = $plugin->enableSmilies;
-if (empty($enableSmilies)) {
-	$enableSmilies = "yes";
-}
 $enableExtensions = $plugin->enableExtensions;
-if (empty($enableExtensions)) {
-	$enableExtensions = "yes";
-}
 
-if (empty($plugin->onlinestatus_active)) {
-	$plugin->onlinestatus_active = 60;
-}
-if (empty($plugin->onlinestatus_inactive)) {
-	$plugin->onlinestatus_inactive = 600;
-}
 if ($plugin->onlinestatus_inactive <= $plugin->onlinestatus_active) {
 	$plugin->onlinestatus_inactive = $plugin->onlinestatus_active + 10;
 }

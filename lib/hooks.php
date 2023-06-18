@@ -1,54 +1,48 @@
 <?php
 
 // Session cleanup by cron
-function elggchat_session_cleanup($hook, $entity_type, $returnvalue, $params) {
+function elggchat_session_cleanup(\Elgg\Hook $hook) {
+	$returnvalue = $hook->getValue();
 	
 	$keepsessions = elgg_get_plugin_setting("keepsessions", "elggchat");
 	if (elgg_get_plugin_setting("keepsessions", "elggchat") == "yes") {
 		return $returnvalue;
 	}
 
-	$resulttext = elgg_echo("elggchat:crondone");
+	elgg_call(ELGG_IGNORE_ACCESS | ELGG_SHOW_DISABLED_ENTITIES, function () use ($returnvalue) {
 
-	$access = elgg_set_ignore_access(true);
-	$access_status = access_get_show_hidden_status();
-	access_show_hidden_entities(true);
+		$session_count = elgg_get_entities(['type' => "object", 'subtype' => ELGGCHAT_SESSION_SUBTYPE, 'count' => true]);
 
-	$session_count = elgg_get_entities(['type' => "object", 'subtype' => ELGGCHAT_SESSION_SUBTYPE, 'count' => true]);
+		if ($session_count < 1) {
+			// no sessions to clean up
+			return $returnvalue . elgg_echo("elggchat:crondone");
+		}
 
-	if ($session_count < 1) {
-		// no sessions to clean up
-		access_show_hidden_entities($access_status);
-		elgg_set_ignore_access($access);
-		return $returnvalue . $resulttext;
-	}
+		$sessions = elgg_get_entities(['type' => "object", 'subtype' => ELGGCHAT_SESSION_SUBTYPE, 'limit' => $session_count]);
 
-	$sessions = elgg_get_entities(['type' => "object", 'subtype' => ELGGCHAT_SESSION_SUBTYPE, 'limit' => $session_count]);
+		foreach ($sessions as $session) {
+			$member_count = $session->countEntitiesFromRelationship(ELGGCHAT_MEMBER);
 
-	foreach ($sessions as $session) {
-		$member_count = $session->countEntitiesFromRelationship(ELGGCHAT_MEMBER);
+			if($member_count > 0) {
+				$max_age = (int) elgg_get_plugin_setting("maxSessionAge", "elggchat");
+				$age = time() - $session->time_updated;
 
-		if($member_count > 0) {
-			$max_age = (int) elgg_get_plugin_setting("maxSessionAge", "elggchat");
-			$age = time() - $session->time_updated;
-
-			if($age > $max_age) {
+				if($age > $max_age) {
+					$session->delete();
+				}
+			} else {
 				$session->delete();
 			}
-		} else {
-			$session->delete();
 		}
-	}
+	});
 
-	access_show_hidden_entities($access_status);
-	elgg_set_ignore_access($access);
-
-	return $returnvalue . $resulttext;
+	return $returnvalue . elgg_echo("elggchat:crondone");
 }
 
 // Add to the user hover menu
-function elggchat_user_hover_menu($hook, $type, $return, $params) {
-	$user = $params['entity'];
+function elggchat_user_hover_menu(\Elgg\Hook $hook) {
+	$menu = $hook->getValue();
+	$user = $hook->getParam('entity');
 
 	if (elgg_is_logged_in() && elgg_get_logged_in_user_guid() != $user->guid) {
 
@@ -62,25 +56,48 @@ function elggchat_user_hover_menu($hook, $type, $return, $params) {
 					$allowed = true;
 				}
 			}
-		} else if($user->isFriendsWith(elgg_get_logged_in_user_guid())) {
+		} else if ($user->isFriendsWith(elgg_get_logged_in_user_guid())) {
 			// default: only friends allowed to invite to chat
 			$allowed = true;
-		} else if(elgg_is_admin_logged_in()) {
+		} else if (elgg_is_admin_logged_in()) {
 			// admins can always invite everyone for chatting
 			$allowed = true;
 		}
-		if($allowed) {
+		if ($allowed) {
 			$item = new ElggMenuItem('elggchat-hover', elgg_echo("elggchat:chat:profile:invite"), '#');
 			$item->setSection('action');
 			$item->{"data-userguid"} = "{$user->guid}";
-			$return[] = $item;
+			$menu[] = $item;
 		}
 	}
-	return $return;
+	return $menu;
 }
 
 // Usersettings
-function elggchat_usersettings_page($hook, $type, $return, $params) {
+function elggchat_administer_utilities_page(\Elgg\Hook $hook) {
+	$menu = $hook->getValue();
+	
+	if (!elgg_in_context('admin')) {
+		return;
+	}
+
+	// Add admin menu item
+	$menu[] = ElggMenuItem::factory([
+		'name' => 'administer_utilities:elggchat',
+		'href' => 'admin/administer_utilities/elggchat',
+		'text' => elgg_echo('admin:administer_utilities:elggchat'),
+		'context' => 'admin',
+		'parent_name' => 'administer_utilities',
+		'section' => 'administer'
+	]);
+
+	return $menu;
+}
+
+// Usersettings
+function elggchat_usersettings_page(\Elgg\Hook $hook) {
+	$menu = $hook->getValue();
+
 	if (!elgg_in_context('settings')) {
 		return;
 	}
@@ -90,11 +107,11 @@ function elggchat_usersettings_page($hook, $type, $return, $params) {
 		return;
 	}
 
-	$return[] = ElggMenuItem::factory([
+	$menu[] = ElggMenuItem::factory([
 		'name' => 'elggchat_usersettings',
 		'text' => elgg_echo('elggchat:usersettings'),
 		'href' => "elggchat/usersettings/{$user->username}",
 	]);
 
-	return $return;
+	return $menu;
 }
