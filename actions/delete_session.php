@@ -16,9 +16,9 @@ $session = get_entity($sessionId);
 
 if ($session->getSubtype() == ELGGCHAT_SESSION_SUBTYPE) {
 	if($session->delete()) {
-		system_message(elgg_echo("elggchat:session_delete_success"));
+		return elgg_ok_response('', elgg_echo("elggchat:session_delete_success"), '/admin/administer_utilities/elggchat');
 	} else {
 		register_error(elgg_echo("elggchat:session_delete_error"));
 	}
 }
-forward('/admin/administer_utilities/elggchat');
+return elgg_error_response(elgg_echo("elggchat:session_delete_error"), '/admin/administer_utilities/elggchat');

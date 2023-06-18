@@ -19,10 +19,8 @@ foreach ($params as $k => $v) {
 	$result = $plugin->setUserSetting($k, $v, $user->guid);
 
 	if (!$result) {
-		register_error(elgg_echo('elggchat:usersettings:save:error', array($plugin_name)));
-		forward(REFERER);
+		return elgg_error_response(elgg_echo('elggchat:usersettings:save:error', [$plugin_name]), REFERER);
 	}
 }
 
-system_message(elgg_echo('elggchat:usersettings:save:success', array($plugin_name)));
-forward(REFERER);
+return elgg_ok_response('', elgg_echo('elggchat:usersettings:save:success', [$plugin_name]), REFERER);

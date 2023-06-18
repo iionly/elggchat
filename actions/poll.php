@@ -17,36 +17,37 @@
 
 if ($user = elgg_get_logged_in_user_entity()) {
 
-	$chat_sessions_count = elgg_get_entities_from_relationship(array('relationship' => ELGGCHAT_MEMBER,
+	$chat_sessions_count = elgg_get_entities_from_relationship([
+		'relationship' => ELGGCHAT_MEMBER,
 		'relationship_guid' => $user->getGUID(),
 		'inverse_relationship' => true,
 		'order_by' => "time_created desc",
 		'limit' => false,
 		'count' => true,
-	));
+	]);
 
-	$result = array();
+	$result = [];
 
 	if ($chat_sessions_count > 0) {
 
 		// Generate sessions
-		$chat_sessions = $user->getEntitiesFromRelationship(array('relationship' => ELGGCHAT_MEMBER, 'inverse_relationship' => true));
+		$chat_sessions = $user->getEntitiesFromRelationship(['relationship' => ELGGCHAT_MEMBER, 'inverse_relationship' => true]);
 		if (!empty($chat_sessions)) {
 
 			krsort($chat_sessions);
 
-			$result["sessions"] = array();
+			$result["sessions"] = [];
 
 			foreach($chat_sessions as $session) {
 				// Dont show session if not mine and no (non system) messages
 				if (!(($session->owner_guid != $user->guid) && ($session->countAnnotations(ELGGCHAT_MESSAGE) == 0))) {
-					$result["sessions"][$session->guid] = array();
+					$result["sessions"][$session->guid] = [];
 
 					// List all the Members of the chat session
-                    $members = $session->getEntitiesFromRelationship(array('relationship' => ELGGCHAT_MEMBER));
+                    $members = $session->getEntitiesFromRelationship(['relationship' => ELGGCHAT_MEMBER]);
 					if (is_array($members) && count($members) > 1) {
 
-						$result["sessions"][$session->guid]["members"] = array();
+						$result["sessions"][$session->guid]["members"] = [];
 
 						$firstMember = true;
 
@@ -60,33 +61,33 @@ if ($user = elgg_get_logged_in_user_entity()) {
 									}
 									$firstMember = false;
 								}
-								$result["sessions"][$session->guid]["members"][] = elgg_view("elggchat/user", array("chatuser" => $member));
+								$result["sessions"][$session->guid]["members"][] = elgg_view("elggchat/user", ["chatuser" => $member]);
 							}
 						}
 					} else {
-						$result["sessions"][$session->guid]["name"] = elgg_echo("elggchat:session:name:default", array($session->guid));
+						$result["sessions"][$session->guid]["name"] = elgg_echo("elggchat:session:name:default", [$session->guid]);
 					}
 
 					// List all the messages in the session
-					$msg_count = elgg_get_annotations(array(
-						'annotation_names' => array(ELGGCHAT_MESSAGE, ELGGCHAT_SYSTEM_MESSAGE),
+					$msg_count = elgg_get_annotations([
+						'annotation_names' => [ELGGCHAT_MESSAGE, ELGGCHAT_SYSTEM_MESSAGE],
 						'guid' => $session->guid,
 						'count' => true,
-					));
+					]);
 
 					$result["sessions"][$session->guid]["message_count"] = $msg_count;
 
 					if ($msg_count > 0) {
-						$annotations = elgg_get_annotations(array(
-							'annotation_names' => array(ELGGCHAT_MESSAGE, ELGGCHAT_SYSTEM_MESSAGE),
+						$annotations = elgg_get_annotations([
+							'annotation_names' => [ELGGCHAT_MESSAGE, ELGGCHAT_SYSTEM_MESSAGE],
 							'guid' => $session->guid,
 							'limit' => $msg_count,
 							'order' => 'desc',
-						));
-						$result["sessions"][$session->guid]["messages"] = array();
+						]);
+						$result["sessions"][$session->guid]["messages"] = [];
 
 						foreach($annotations as $msg) {
-							$result["sessions"][$session->guid]["messages"][$msg->id] = elgg_view("elggchat/message", array("message" => $msg, "message_owner" => get_user($msg->owner_guid), "offset" => $msg->id));
+							$result["sessions"][$session->guid]["messages"][$msg->id] = elgg_view("elggchat/message", ["message" => $msg, "message_owner" => get_user($msg->owner_guid), "offset" => $msg->id]);
 						}
 					}
 				}
@@ -94,34 +95,34 @@ if ($user = elgg_get_logged_in_user_entity()) {
 		}
 	}
 
-	$result["friends"] = array();
-	$result["friends"]["offline"] = array();
-	$result["friends"]["online"] = array();
+	$result["friends"] = [];
+	$result["friends"]["offline"] = [];
+	$result["friends"]["online"] = [];
 
 	// Add friends information
-	$friends_count = elgg_get_entities_from_relationship(array(
+	$friends_count = elgg_get_entities_from_relationship([
 		'relationship' => 'friend',
 		'relationship_guid' => $user->getGUID(),
 		'inverse_relationship' => true,
 		'type' => 'user',
 		'count' => true,
-	));
+	]);
 	if ($friends_count > 0) {
-		$friends = elgg_get_entities_from_relationship(array(
+		$friends = elgg_get_entities_from_relationship([
 			'relationship' => 'friend',
 			'relationship_guid' => $user->getGUID(),
 			'inverse_relationship' => true,
 			'type' => 'user',
 			'limit' => $friends_count,
-		));
+		]);
 
 		$inactive = (int) elgg_get_plugin_setting("onlinestatus_inactive", "elggchat");
 		$time = time();
 		foreach ($friends as $friend) {
 			if ($time - $friend->last_action <= $inactive) {
-				$result["friends"]["online"][] = elgg_view("elggchat/user", array("chatuser" => $friend));
+				$result["friends"]["online"][] = elgg_view("elggchat/user", ["chatuser" => $friend]);
 			} else {
-				$result["friends"]["offline"][] = elgg_view("elggchat/user", array("chatuser" => $friend));
+				$result["friends"]["offline"][] = elgg_view("elggchat/user", ["chatuser" => $friend]);
 			}
 		}
 	}

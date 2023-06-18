@@ -15,7 +15,7 @@
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  */
 
-return array(
+return [
 	'admin:administer_utilities:elggchat' => 'ElggChat',
 	'elggchat' => "ElggChat",
 	'elggchat:chat:profile:invite' => "Invite for chat",
@@ -77,7 +77,8 @@ return array(
 	'elggchat:admin:settings:enable_sounds' => "Enable sounds for new messages (only plays when chat window is minimized)",
 	'elggchat:admin:settings:enable_flashing' => "Enable flashing for new messages (only blinks when chat window is minimized)",
 	'elggchat:admin:settings:enable_smilies' => "Convert smilies shortcodes within chat messages to animated gif smilies",
-	'elggchat:admin:settings:enable_extensions' => "Enable extensions (the ElggChat plugin comes with no extensions itself but it is possible for other plugins to add some functionality on their own to the Chat bar by extending the view \"elggchat/extensions\", if this option is enabled)",
+	'elggchat:admin:settings:enable_extensions' => "Enable extensions",
+	'elggchat:admin:settings:enable_extensions_help' => "(the ElggChat plugin comes with no extensions itself but it is possible for other plugins to add some functionality on their own to the Chat bar by extending the view \"elggchat/extensions\", if this option is enabled)",
 
 	'elggchat:admin:settings:online_status:active' => "Max number of seconds before user will be idle",
 	'elggchat:admin:settings:online_status:inactive' => "Max number of seconds before user will be inactive",
@@ -96,4 +97,4 @@ return array(
 	// Toolbar actions
 	'elggchat:toolbar:minimize' => "Minimize Chat Toolbar",
 	'elggchat:toolbar:maximize' => "Maximize Chat Toolbar",
-);
+];

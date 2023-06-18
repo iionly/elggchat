@@ -24,10 +24,10 @@ if (($invite_user = get_user($inviteId)) && ($session = get_entity($sessionId)) 
 		$session->addRelationship($inviteId, ELGGCHAT_MEMBER);
 		$user = get_user($userId);
 
-		$session->annotate(ELGGCHAT_SYSTEM_MESSAGE, elgg_echo('elggchat:action:invite', array($user->name, $invite_user->name)), ACCESS_LOGGED_IN, $userId);
+		$session->annotate(ELGGCHAT_SYSTEM_MESSAGE, elgg_echo('elggchat:action:invite', [$user->name, $invite_user->name]), ACCESS_LOGGED_IN, $userId);
 		$session->save();
 
-		$response = array('success' => true);
+		$response = ['success' => true];
 		echo json_encode($response);
 	}
 }

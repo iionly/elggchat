@@ -15,86 +15,164 @@
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  */
 
-$chatUpdateInterval = $vars['entity']->chatUpdateInterval;
-$maxChatUpdateInterval = $vars['entity']->maxChatUpdateInterval;
-$monitorUpdateInterval = $vars['entity']->monitorUpdateInterval;
-$maxSessionAge = $vars['entity']->maxSessionAge;
-$keepsessions = $vars['entity']->keepsessions;
-$enableSounds = $vars['entity']->enableSounds;
-$enableFlashing = $vars['entity']->enableFlashing;
-$enableSmilies = $vars['entity']->enableSmilies;
-$enableExtensions = $vars['entity']->enableExtensions;
+$plugin = elgg_extract('entity', $vars);
 
-if (empty($vars['entity']->onlinestatus_active)) {
-	$vars['entity']->onlinestatus_active = 60;
+$chatUpdateInterval = $plugin->chatUpdateInterval;
+if (empty($chatUpdateInterval)) {
+	$chatUpdateInterval = 5;
 }
-if (empty($vars['entity']->onlinestatus_inactive)) {
-	$vars['entity']->onlinestatus_inactive = 600;
+$maxChatUpdateInterval = $plugin->maxChatUpdateInterval;
+if (empty($maxChatUpdateInterval)) {
+	$maxChatUpdateInterval = 30;
+}
+$maxSessionAge = $plugin->maxSessionAge;
+if (empty($maxSessionAge)) {
+	$maxSessionAge = 21600;
+}
+$keepsessions = $plugin->keepsessions;
+if (empty($keepsessions)) {
+	$keepsessions = "yes";
+}
+$enableSounds = $plugin->enableSounds;
+if (empty($enableSounds)) {
+	$enableSounds = "yes";
+}
+$enableFlashing = $plugin->enableFlashing;
+if (empty($enableFlashing)) {
+	$enableFlashing = "yes";
+}
+$enableSmilies = $plugin->enableSmilies;
+if (empty($enableSmilies)) {
+	$enableSmilies = "yes";
+}
+$enableExtensions = $plugin->enableExtensions;
+if (empty($enableExtensions)) {
+	$enableExtensions = "yes";
 }
 
-?>
+if (empty($plugin->onlinestatus_active)) {
+	$plugin->onlinestatus_active = 60;
+}
+if (empty($plugin->onlinestatus_inactive)) {
+	$plugin->onlinestatus_inactive = 600;
+}
+if ($plugin->onlinestatus_inactive <= $plugin->onlinestatus_active) {
+	$plugin->onlinestatus_inactive = $plugin->onlinestatus_active + 10;
+}
 
-<p>
-<select name="params[chatUpdateInterval]">
-	<option value="5" <?php if ($chatUpdateInterval == 5 || empty($chatUpdateInterval)) echo " selected=\"yes\" ";  ?>>5</option>
-	<option value="10" <?php if ($chatUpdateInterval == 10) echo " selected=\"yes\" "; ?>>10</option>
-	<option value="15" <?php if ($chatUpdateInterval == 15) echo " selected=\"yes\" "; ?>>15</option>
-	<option value="30" <?php if ($chatUpdateInterval == 30) echo " selected=\"yes\" "; ?>>30</option>
-</select>
-<?php echo elgg_echo('elggchat:admin:settings:chatupdateinterval'); ?><br />
+echo elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('elggchat:admin:settings:chatupdateinterval'),
+	'name' => 'params[chatUpdateInterval]',
+	'options_values' => [
+		5  => '5',
+		10 => '15',
+		15 => '15',
+		30 => '30',
+	],
+	'value' => $chatUpdateInterval,
+]);
 
-<select name="params[maxChatUpdateInterval]">
-	<option value="15" <?php if ($maxChatUpdateInterval == 15) echo " selected=\"yes\" "; ?>>15</option>
-	<option value="30" <?php if ($maxChatUpdateInterval == 30 || empty($maxChatUpdateInterval)) echo " selected=\"yes\" "; ?>>30</option>
-	<option value="45" <?php if ($maxChatUpdateInterval == 45) echo " selected=\"yes\" "; ?>>45</option>
-	<option value="60" <?php if ($maxChatUpdateInterval == 60) echo " selected=\"yes\" "; ?>>60</option>
-	<option value="120" <?php if ($maxChatUpdateInterval == 120) echo " selected=\"yes\" "; ?>>120</option>
-</select>
-<?php echo elgg_echo('elggchat:admin:settings:maxchatupdateinterval'); ?><br />
+echo elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('elggchat:admin:settings:maxchatupdateinterval'),
+	'name' => 'params[maxChatUpdateInterval]',
+	'options_values' => [
+		15  => '15',
+		30  => '30',
+		45  => '45',
+		60  => '60',
+		120 => '120',
+	],
+	'value' => $maxChatUpdateInterval,
+]);
 
-<select name="params[maxSessionAge]">
-	<option value="3600" <?php if ($maxSessionAge == 3600) echo " selected=\"yes\" "; ?>><?php echo elgg_echo("elggchat:admin:settings:hour", array(1)); ?></option>
-	<option value="21600" <?php if ($maxSessionAge == 21600 || empty($maxSessionAge)) echo " selected=\"yes\" "; ?>><?php echo elgg_echo("elggchat:admin:settings:hours", array(6)); ?></option>
-	<option value="43200" <?php if ($maxSessionAge == 43200) echo " selected=\"yes\" "; ?>><?php echo elgg_echo("elggchat:admin:settings:hours", array(12)); ?></option>
-	<option value="86400" <?php if ($maxSessionAge == 86400) echo " selected=\"yes\" "; ?>><?php echo elgg_echo("elggchat:admin:settings:hours", array(24)); ?></option>
-	<option value="604800" <?php if ($maxSessionAge == 604800) echo " selected=\"yes\" "; ?>><?php echo elgg_echo("elggchat:admin:settings:days", array(7)); ?></option>
-</select>
-<?php echo elgg_echo('elggchat:admin:settings:maxsessionage'); ?><br />
+echo elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('elggchat:admin:settings:maxsessionage'),
+	'name' => 'params[maxSessionAge]',
+	'options_values' => [
+		3600    => elgg_echo("elggchat:admin:settings:hour", [1]),
+		21600   => elgg_echo("elggchat:admin:settings:hours", [6]),
+		43200   => elgg_echo("elggchat:admin:settings:hours", [12]),
+		86400   => elgg_echo("elggchat:admin:settings:hours", [24]),
+		604800  => elgg_echo("elggchat:admin:settings:days", [7]),
+	],
+	'value' => $maxSessionAge,
+]);
 
-<select name="params[keepsessions]">
-	<option value="yes" <?php if ($keepsessions == "yes") echo " selected=\"yes\" "; ?>><?php echo elgg_echo("option:yes");?></option>
-	<option value="no" <?php if ($keepsessions != "yes") echo " selected=\"yes\" "; ?>><?php echo elgg_echo("option:no");?></option>
-</select>
-<?php echo elgg_echo('elggchat:admin:settings:keepsessions'); ?><br />
+echo elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('elggchat:admin:settings:keepsessions'),
+	'name' => 'params[keepsessions]',
+	'options_values' => [
+		'yes' => elgg_echo("option:yes"),
+		'no' => elgg_echo("option:no"),
+	],
+	'value' => $keepsessions,
+]);
 
-<br>
-<?php echo elgg_echo('elggchat:admin:settings:online_status:active') . elgg_view("input/text", array("name"=>"params[onlinestatus_active]", "value"=>$vars['entity']->onlinestatus_active));?>
+echo elgg_view_field([
+	'#type' => 'number',
+	'#label' => elgg_echo('elggchat:admin:settings:online_status:active'),
+	'name' => 'params[onlinestatus_active]',
+	'value' => $plugin->onlinestatus_active,
+	'min' => 10,
+	'max' => 300,
+	'step' => 10,
+]);
 
-<br>
-<?php echo elgg_echo('elggchat:admin:settings:online_status:inactive') . elgg_view("input/text", array("name"=>"params[onlinestatus_inactive]", "value"=>$vars['entity']->onlinestatus_inactive));?>
+echo elgg_view_field([
+	'#type' => 'number',
+	'#label' => elgg_echo('elggchat:admin:settings:online_status:inactive'),
+	'name' => 'params[onlinestatus_inactive]',
+	'value' => $plugin->onlinestatus_inactive,
+	'min' => $plugin->onlinestatus_active + 10,
+	'max' => 1200,
+	'step' => 10,
+]);
 
-<br>
-<select name="params[enableSounds]">
-	<option value="yes" <?php if ($enableSounds == "yes") echo " selected=\"yes\" "; ?>><?php echo elgg_echo("option:yes");?></option>
-	<option value="no" <?php if ($enableSounds != "yes") echo " selected=\"yes\" "; ?>><?php echo elgg_echo("option:no");?></option>
-</select>
-<?php echo elgg_echo('elggchat:admin:settings:enable_sounds'); ?><br />
+echo elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('elggchat:admin:settings:enable_sounds'),
+	'name' => 'params[enableSounds]',
+	'options_values' => [
+		'yes' => elgg_echo("option:yes"),
+		'no' => elgg_echo("option:no"),
+	],
+	'value' => $enableSounds,
+]);
 
-<select name="params[enableFlashing]">
-	<option value="yes" <?php if ($enableFlashing == "yes") echo " selected=\"yes\" "; ?>><?php echo elgg_echo("option:yes");?></option>
-	<option value="no" <?php if ($enableFlashing != "yes") echo " selected=\"yes\" "; ?>><?php echo elgg_echo("option:no");?></option>
-</select>
-<?php echo elgg_echo('elggchat:admin:settings:enable_flashing'); ?><br />
+echo elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('elggchat:admin:settings:enable_flashing'),
+	'name' => 'params[enableFlashing]',
+	'options_values' => [
+		'yes' => elgg_echo("option:yes"),
+		'no' => elgg_echo("option:no"),
+	],
+	'value' => $enableFlashing,
+]);
 
-<select name="params[enableSmilies]">
-	<option value="yes" <?php if ($enableSmilies == "yes") echo " selected=\"yes\" "; ?>><?php echo elgg_echo("option:yes");?></option>
-	<option value="no" <?php if ($enableSmilies != "yes") echo " selected=\"yes\" "; ?>><?php echo elgg_echo("option:no");?></option>
-</select>
-<?php echo elgg_echo('elggchat:admin:settings:enable_smilies'); ?><br />
+echo elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('elggchat:admin:settings:enable_smilies'),
+	'name' => 'params[enableSmilies]',
+	'options_values' => [
+		'yes' => elgg_echo("option:yes"),
+		'no' => elgg_echo("option:no"),
+	],
+	'value' => $enableSmilies,
+]);
 
-<select name="params[enableExtensions]">
-	<option value="yes" <?php if ($enableExtensions == "yes") echo " selected=\"yes\" "; ?>><?php echo elgg_echo("option:yes");?></option>
-	<option value="no" <?php if ($enableExtensions != "yes") echo " selected=\"yes\" "; ?>><?php echo elgg_echo("option:no");?></option>
-	</select>
-<?php echo elgg_echo('elggchat:admin:settings:enable_extensions'); ?><br />
-</p>
+echo elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('elggchat:admin:settings:enable_extensions'),
+	'#help' => elgg_echo('elggchat:admin:settings:enable_extensions_help'),
+	'name' => 'params[enableExtensions]',
+	'options_values' => [
+		'yes' => elgg_echo("option:yes"),
+		'no' => elgg_echo("option:no"),
+	],
+	'value' => $enableExtensions,
+]);

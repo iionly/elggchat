@@ -15,7 +15,7 @@
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  */
 
-return array(
+return [
 	'admin:administer_utilities:elggchat' => 'ElggChat',
 	'elggchat' => "ElggChat",
 	'elggchat:chat:profile:invite' => "Zum Chatten einladen",
@@ -77,7 +77,8 @@ return array(
 	'elggchat:admin:settings:enable_sounds' => "Soundausgabe bei neuen Nachrichten aktivieren (nur wenn Chat-Fenster minimiert ist)",
 	'elggchat:admin:settings:enable_flashing' => "Blinken bei neuen Nachrichten aktivieren (nur wenn Chat-Fenster minimiert ist)",
 	'elggchat:admin:settings:enable_smilies' => "Wandle Smilies-Kürzel innerhalb Chat-Nachrichten in Smilies-Bilder (Animated GIFs) um",
-	'elggchat:admin:settings:enable_extensions' => "Erweiterungen aktivieren (das ElggChat-Plugin selbst enthält keine Erweiterungen. Wenn diese Option aktiviert ist, ist es aber anderen Plugins möglich, durch Erweiterung der View \"elggchat/extensions\" eigene Funktionalität zur Chat-Leiste hinzuzufügen)",
+	'elggchat:admin:settings:enable_extensions' => "Erweiterungen aktivieren",
+	'elggchat:admin:settings:enable_extensions_help' => "(das ElggChat-Plugin selbst enthält keine Erweiterungen. Wenn diese Option aktiviert ist, ist es aber anderen Plugins möglich, durch Erweiterung der View \"elggchat/extensions\" eigene Funktionalität zur Chat-Leiste hinzuzufügen)",
 
 	'elggchat:admin:settings:online_status:active' => "Max. Zeit (in Sekunden), bis ein Chat-Teilnehmer als pausierend (\"idle\") betrachtet wird",
 	'elggchat:admin:settings:online_status:inactive' => "Max. Zeit (in Sekunden), bis ein Chat-Teilnehmer als inaktiv betrachtet wird",
@@ -95,5 +96,5 @@ return array(
 
 	// Toolbar actions
 	'elggchat:toolbar:minimize' => "Chat-Toolbar minimieren",
-	'elggchat:toolbar:maximize' => "Chat-Toolbar maximieren"
-);
+	'elggchat:toolbar:maximize' => "Chat-Toolbar maximieren",
+];

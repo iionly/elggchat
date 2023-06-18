@@ -15,18 +15,18 @@
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  */
 
-$session_guid = (int)get_input('session_guid');
+$session_guid = (int) get_input('session_guid');
 
-if($session_guid && ($session = get_entity($session_guid)) && ($session->getSubtype() == ELGGCHAT_SESSION_SUBTYPE)) {
+if ($session_guid && ($session = get_entity($session_guid)) && ($session->getSubtype() == ELGGCHAT_SESSION_SUBTYPE)) {
 
-	$back_button =  elgg_view("output/url", array(
+	$back_button =  elgg_view("output/url", [
 		'href' => elgg_get_site_url() . "admin/administer_utilities/elggchat",
 		'text' => elgg_echo('elggchat:sessions_backbutton'),
 		'is_trusted' => true,
-		'class' => 'elgg-button elgg-button-action'
-	));
+		'class' => 'elgg-button elgg-button-action',
+	]);
 
-	$details = elgg_view_entity($session, array('full_view' => true));
+	$details = elgg_view_entity($session, ['full_view' => true]);
 
 	if (!$details) {
 		$details = '<p class="mtm"><b>' . elgg_echo('elggchat:session:no_session_details') . '</b></p>';
@@ -37,16 +37,16 @@ if($session_guid && ($session = get_entity($session_guid)) && ($session->getSubt
 
 } else {
 
-	$offset = (int)get_input('offset', 0);
+	$offset = (int) get_input('offset', 0);
 	$limit = 10;
 
-	$list = elgg_list_entities(array(
+	$list = elgg_list_entities([
 		'type' => 'object',
 		'subtype' => ELGGCHAT_SESSION_SUBTYPE,
 		'limit' => $limit,
 		'full_view' => false,
-		'offset' => $offset
-	));
+		'offset' => $offset,
+	]);
 
 	if (!$list) {
 		$list = '<p class="mtm"><b>' . elgg_echo('elggchat:session:no_sessions') . '</b></p>';

@@ -21,13 +21,8 @@ if ($session->getSubtype() == ELGGCHAT_SESSION_SUBTYPE) {
 	if (!empty($admin_message)) {
 		if ($session->annotate(ELGGCHAT_SYSTEM_MESSAGE, elgg_echo('elggchat:admin_message').$admin_message, ACCESS_LOGGED_IN, $userId)) {
 			if ($session->save()) {
-				system_message(elgg_echo("elggchat:post_admin_message_success"));
-			} else {
-				register_error(elgg_echo("elggchat:post_admin_message_error"));
-			}
-		} else {
-			register_error(elgg_echo("elggchat:post_admin_message_error"));
+				return elgg_ok_response('', elgg_echo("elggchat:post_admin_message_success"), REFERER);
 		};
 	}
 }
-forward(REFERER);
+return elgg_error_response(elgg_echo("elggchat:post_admin_message_error"), REFERER);

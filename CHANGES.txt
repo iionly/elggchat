@@ -1,6 +1,12 @@
 Changelog
 =========
 
+2.3.0
+-----
+
+- Code cleanup and consolidation,
+- Requires Elgg 2.3 at minimum.
+
 2.0.2
 -----
 

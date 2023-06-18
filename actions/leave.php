@@ -24,7 +24,7 @@ if (check_entity_relationship($sessionId, ELGGCHAT_MEMBER, $userId)) {
 
 	remove_entity_relationship($sessionId, ELGGCHAT_MEMBER, $userId);
 
-	$session->annotate(ELGGCHAT_SYSTEM_MESSAGE, elgg_echo('elggchat:action:leave', array($user->name)), ACCESS_LOGGED_IN, $userId);
+	$session->annotate(ELGGCHAT_SYSTEM_MESSAGE, elgg_echo('elggchat:action:leave', [$user->name]), ACCESS_LOGGED_IN, $userId);
 	$session->save();
 
 	// Clean up
@@ -40,7 +40,7 @@ if (check_entity_relationship($sessionId, ELGGCHAT_MEMBER, $userId)) {
 	}
 }
 
-$response = array('success' => true);
+$response = ['success' => true];
 echo json_encode($response);
 
 exit();

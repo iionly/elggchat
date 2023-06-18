@@ -17,21 +17,25 @@
 
 elgg_require_js('elggchat/session');
 
-$basesec = elgg_get_plugin_setting("chatUpdateInterval","elggchat");
+if (!(elgg_is_logged_in() && (elgg_get_plugin_user_setting("enableChat", "yes", "elggchat") != "no"))) {
+	return;
+}
+
+$basesec = elgg_get_plugin_setting("chatUpdateInterval", "elggchat");
 if (!$basesec) {
 	$basesec = 5;
 }
-$maxsecs = elgg_get_plugin_setting("maxChatUpdateInterval","elggchat");
+$maxsecs = elgg_get_plugin_setting("maxChatUpdateInterval", "elggchat");
 if (!$maxsecs) {
 	$maxsecs = 30;
 }
 
-$sound = elgg_get_plugin_setting("enableSounds","elggchat");
-if(empty($sound)) {
+$sound = elgg_get_plugin_setting("enableSounds", "elggchat");
+if (empty($sound)) {
 	$sound = "no";
 }
 
-$flash = elgg_get_plugin_setting("enableFlashing","elggchat");
+$flash = elgg_get_plugin_setting("enableFlashing", "elggchat");
 if (empty($flash)) {
 	$flash = "no";
 }
