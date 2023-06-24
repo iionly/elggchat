@@ -18,6 +18,7 @@
 $sessionId = (int) get_input("chatsession");
 $userId = elgg_get_logged_in_user_guid();
 
+$response = false;
 if (check_entity_relationship($sessionId, ELGGCHAT_MEMBER, $userId)) {
 	$session = get_entity($sessionId);
 	$user = get_user($userId);
@@ -25,23 +26,29 @@ if (check_entity_relationship($sessionId, ELGGCHAT_MEMBER, $userId)) {
 	remove_entity_relationship($sessionId, ELGGCHAT_MEMBER, $userId);
 
 	$session->annotate(ELGGCHAT_SYSTEM_MESSAGE, elgg_echo('elggchat:action:leave', [$user->name]), ACCESS_LOGGED_IN, $userId);
-	$session->save();
+	if ($session->save()) {
+		$response = true;
+	}
 
 	// Clean up
 	if ($session->countEntitiesFromRelationship(ELGGCHAT_MEMBER) == 0) {
 		// No more members
 		$keepsessions = elgg_get_plugin_setting("keepsessions","elggchat");
 		if (elgg_get_plugin_setting("keepsessions","elggchat") != "yes") {
-			$session->delete();
+			if ($session->delete()) {
+				$response = true;
+			}
 		}
 	} elseif ($session->countAnnotations(ELGGCHAT_MESSAGE) == 0 && !check_entity_relationship($session->guid, ELGGCHAT_MEMBER, $session->owner_guid)) {
 		// Owner left without leaving a real message
-		$session->delete();
+		if ($session->delete()) {
+			$response = true;
+		}
 	}
 }
 
-$response = ['success' => true];
-echo json_encode($response);
+$output = json_encode([
+	'success' => $response,
+]);
 
-exit();
-?>
+return elgg_ok_response($output, '', REFERER);

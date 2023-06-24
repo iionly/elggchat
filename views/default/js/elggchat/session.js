@@ -1,6 +1,10 @@
 define(function(require) {
 	var elgg = require("elgg");
 	var $ = require("jquery");
+	var Ajax = require('elgg/Ajax');
+
+	// manage Spinner manually
+	var ajax = new Ajax(false);
 
 	var basesec = $('#elggchat_toolbar').data('basesec');
 	var maxsecs = $('#elggchat_toolbar').data('maxsecs');
@@ -75,17 +79,16 @@ define(function(require) {
 	}
 
 	function addFriend(sessionid, friend){
-		elgg.action('elggchat/invite', {
+		ajax.action('elggchat/invite', {
 			data: {
 				chatsession: sessionid,
 				friend: friend
-			},
-			success: function(json) {
-				if (json.success) {
-					$("#" + sessionid + " .chatmembersfunctions_invite").toggle();
-					checkForSessions();
-					$("#" + sessionid + " input[name='chatmessage']").focus();
-				}
+			}
+		}).done(function(json) {
+			if (json.success) {
+				$("#" + sessionid + " .chatmembersfunctions_invite").toggle();
+				checkForSessions();
+				$("#" + sessionid + " input[name='chatmessage']").focus();
 			}
 		});
 	}
@@ -97,15 +100,14 @@ define(function(require) {
 			if(current == sessionid){
 				eraseCookie("elggchat");
 			}
-			elgg.action('elggchat/leave', {
+			ajax.action('elggchat/leave', {
 				data: {
 					chatsession: sessionid
-				},
-				success: function(json) {
-					if (json.success) {
-						$("#" + sessionid).remove();
-						checkForSessions();
-					}
+				}
+			}).done(function(json) {
+				if (json.success) {
+					$("#" + sessionid).remove();
+					checkForSessions();
 				}
 			});
 		}
@@ -133,15 +135,14 @@ define(function(require) {
 	}
 
 	function startSession(friendGUID){
-		elgg.action('elggchat/create', {
+		ajax.action('elggchat/create', {
 			data: {
 				invite: friendGUID
-			},
-			success: function(data) {
-				if(data){
-					checkForSessions();
-					openSession(data);
-				}
+			}
+		}).done(function(json) {
+			if(json.success) {
+				checkForSessions();
+				openSession(json.data);
 			}
 		});
 	}

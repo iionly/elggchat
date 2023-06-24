@@ -6,6 +6,10 @@ define("ELGGCHAT_SYSTEM_MESSAGE", "elggchat_system_message");
 define("ELGGCHAT_MESSAGE", "elggchat_message");
 
 return [
+	'plugin' => [
+		'name' => 'Elggchat',
+		'version' => '4.0.0',
+	],
 	'actions' => [
 		'elggchat/create' => [
 			'access' => 'logged_in',

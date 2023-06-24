@@ -2,22 +2,21 @@
 
 $current_user = elgg_get_logged_in_user_entity();
 
-$guid = (int) get_input('guid', 0);
-if (!$guid || !($user = get_entity($guid))) {
-	forward();
-}
-if (($user->guid != $current_user->guid) && !$current_user->isAdmin()) {
-	forward();
+$user_guid = (int) get_input('guid', 0);
+$user = get_user($user_guid);
+$plugin = elgg_get_plugin_from_id('elggchat');
+$plugin_name = $plugin->getDisplayName();
+
+if (!$user || ($user->guid != $current_user->guid) && !$current_user->isAdmin()) {
+	return elgg_error_response(elgg_echo('elggchat:usersettings:save:error', [$plugin_name]), REFERER);
 }
 
 $params = get_input('params');
 
-$plugin = elgg_get_plugin_from_id('elggchat');
-$plugin_name = $plugin->getManifest()->getName();
+$result = false;
 
-foreach ($params as $k => $v) {
-	$result = $plugin->setUserSetting($k, $v, $user->guid);
-
+foreach ($params as $name => $value) {
+	$result = $user->setPluginSetting($plugin->getID(), $name, $value);
 	if (!$result) {
 		return elgg_error_response(elgg_echo('elggchat:usersettings:save:error', [$plugin_name]), REFERER);
 	}

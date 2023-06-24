@@ -19,6 +19,7 @@ $inviteId = (int) get_input("friend");
 $sessionId = (int) get_input("chatsession");
 $userId =  elgg_get_logged_in_user_guid();
 
+$response = false;
 if (($invite_user = get_user($inviteId)) && ($session = get_entity($sessionId)) && $inviteId != $userId) {
 	if ($session->getSubtype() == ELGGCHAT_SESSION_SUBTYPE && !check_entity_relationship($sessionId, ELGGCHAT_MEMBER, $inviteId) && check_entity_relationship($sessionId, ELGGCHAT_MEMBER, $userId)) {
 		$session->addRelationship($inviteId, ELGGCHAT_MEMBER);
@@ -27,9 +28,12 @@ if (($invite_user = get_user($inviteId)) && ($session = get_entity($sessionId)) 
 		$session->annotate(ELGGCHAT_SYSTEM_MESSAGE, elgg_echo('elggchat:action:invite', [$user->name, $invite_user->name]), ACCESS_LOGGED_IN, $userId);
 		$session->save();
 
-		$response = ['success' => true];
-		echo json_encode($response);
+		$response = true;
 	}
 }
-exit();
-?>
+
+$output = json_encode([
+	'success' => $response,
+]);
+
+return elgg_ok_response($output, '', REFERER);

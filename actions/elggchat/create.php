@@ -19,10 +19,12 @@ $inviteId = (int) get_input("invite");
 
 $user = elgg_get_logged_in_user_entity();
 
+$response = false;
+$session_guid = 0;
 if (($invite_user = get_user($inviteId)) && $inviteId != $user->guid) {
 
 	$session = new ElggObject();
-	$session->subtype = ELGGCHAT_SESSION_SUBTYPE;
+	$session->setSubtype(ELGGCHAT_SESSION_SUBTYPE);
 	$session->access_id = ACCESS_LOGGED_IN;
 	$session->setMetaData("tag","");
 	$session->save();
@@ -30,7 +32,13 @@ if (($invite_user = get_user($inviteId)) && $inviteId != $user->guid) {
 	$session->addRelationship($user->guid, ELGGCHAT_MEMBER);
 	$session->addRelationship($invite_user->guid, ELGGCHAT_MEMBER);
 
-	echo $session->guid;
+	$response = true;
+	$session_guid = $session->guid;
 }
-exit();
-?>
+
+$output = json_encode([
+	'success' => $response,
+	'data' => $session_guid,
+]);
+
+return elgg_ok_response($output, '', REFERER);

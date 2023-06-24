@@ -1,8 +1,8 @@
-Elggchat for Elgg 3.3 and newer Elgg 3.X
+Elggchat for Elgg 4.0 and newer Elgg 4.X
 ========================================
 
-Latest Version: 3.3.1  
-Released: 2023-06-20  
+Latest Version: 4.0.0  
+Released: 2023-06-19  
 Contact: iionly@gmx.de  
 License: GNU General Public License version 2  
 Copyright: (c) iionly (for Elgg 1.8 and newer), ColdTrick IT Solutions  
@@ -11,7 +11,7 @@ Copyright: (c) iionly (for Elgg 1.8 and newer), ColdTrick IT Solutions
 Description
 -----------
 
-This is an updated, bug-fixed and slightly improved version of the Elggchat plugin originally by Coldtrick IT Solutions (https://community.elgg.org/plugins/384910). This version of Elggchat is intended for Elgg 3.3.
+This is an updated, bug-fixed and slightly improved version of the Elggchat plugin originally by Coldtrick IT Solutions (https://community.elgg.org/plugins/384910). This version of Elggchat is intended for Elgg 4.X.
 
 The Elggchat plugin provides a chat/instant messaging feature based completely on the Elgg platform. Start chatting from the profile icon of community site member, or by selecting a friend from the friendpicker on the chat toolbar. Sessions will be shown on the chat toolbar.
 

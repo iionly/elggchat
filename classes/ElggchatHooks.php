@@ -73,7 +73,7 @@ class ElggchatHooks {
 					'name' => 'elggchat-hover',
 					'href' => '#',
 					'text' => elgg_echo('elggchat:chat:profile:invite'),
-					'icon' => 'comments-o',
+					'icon' => 'comments',
 					'section' => 'action',
 					'data-userguid' => "{$user->guid}",
 				]);

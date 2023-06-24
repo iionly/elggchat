@@ -10,7 +10,7 @@ if ($username) {
 }
 
 if (!$user || !$user->canEdit()) {
-	forward('settings/user');
+	elgg_redirect_response('settings/user');
 }
 
 elgg_set_context('settings');
