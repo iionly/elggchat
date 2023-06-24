@@ -22,6 +22,7 @@ if ($session->getSubtype() == ELGGCHAT_SESSION_SUBTYPE) {
 		if ($session->annotate(ELGGCHAT_SYSTEM_MESSAGE, elgg_echo('elggchat:admin_message').$admin_message, ACCESS_LOGGED_IN, $userId)) {
 			if ($session->save()) {
 				return elgg_ok_response('', elgg_echo("elggchat:post_admin_message_success"), REFERER);
+			}
 		};
 	}
 }
