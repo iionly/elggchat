@@ -102,26 +102,4 @@ class ElggchatHooks {
 
 		return $menu;
 	}
-
-	// Usersettings
-	public static function elggchat_usersettings_page(\Elgg\Hook $hook) {
-		$menu = $hook->getValue();
-
-		if (!elgg_in_context('settings')) {
-			return;
-		}
-
-		$user = elgg_get_page_owner_entity();
-		if (!$user || !$user->canEdit()) {
-			return;
-		}
-
-		$menu[] = ElggMenuItem::factory([
-			'name' => 'elggchat_usersettings',
-			'text' => elgg_echo('elggchat:usersettings'),
-			'href' => "elggchat/usersettings/{$user->username}",
-		]);
-
-		return $menu;
-	}
 }

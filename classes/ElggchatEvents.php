@@ -27,7 +27,7 @@ class ElggchatEvents {
 					$sessions = $object->getEntitiesFromRelationship(['relationship' => ELGGCHAT_MEMBER, 'inverse_relationship' => true]);
 
 					foreach($sessions as $session) {
-						remove_entity_relationship($session->guid, ELGGCHAT_MEMBER, $object->guid);
+						$session->removeRelationship($object->guid, ELGGCHAT_MEMBER);
 
 						$session->annotate(ELGGCHAT_SYSTEM_MESSAGE, elgg_echo('elggchat:action:leave', [$object->name]), ACCESS_LOGGED_IN, $object->guid);
 						$session->save();
@@ -39,7 +39,7 @@ class ElggchatEvents {
 							if (elgg_get_plugin_setting("keepsessions","elggchat") != "yes") {
 								$session->delete();
 							}
-						} elseif ($session->countAnnotations(ELGGCHAT_MESSAGE) == 0 && !check_entity_relationship($session->guid, ELGGCHAT_MEMBER, $session->owner_guid)) {
+						} elseif ($session->countAnnotations(ELGGCHAT_MESSAGE) == 0 && !$session->hasRelationship($session->owner_guid, ELGGCHAT_MEMBER)) {
 							// Owner left without leaving a real message
 							$session->delete();
 						}

@@ -1,6 +1,12 @@
 Changelog
 =========
 
+4.3.0
+-----
+
+- Updated for Elgg 4.3,
+- Requires Elgg 4.3 at minimum.
+
 4.0.0
 -----
 

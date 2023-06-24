@@ -21,7 +21,7 @@ $userId =  elgg_get_logged_in_user_guid();
 
 $response = false;
 if (($invite_user = get_user($inviteId)) && ($session = get_entity($sessionId)) && $inviteId != $userId) {
-	if ($session->getSubtype() == ELGGCHAT_SESSION_SUBTYPE && !check_entity_relationship($sessionId, ELGGCHAT_MEMBER, $inviteId) && check_entity_relationship($sessionId, ELGGCHAT_MEMBER, $userId)) {
+	if ($session->getSubtype() == ELGGCHAT_SESSION_SUBTYPE && !$session->hasRelationship($inviteId, ELGGCHAT_MEMBER) && $session->hasRelationship($userId, ELGGCHAT_MEMBER)) {
 		$session->addRelationship($inviteId, ELGGCHAT_MEMBER);
 		$user = get_user($userId);
 

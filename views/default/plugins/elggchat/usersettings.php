@@ -1,9 +1,6 @@
 <?php
 
-$user = elgg_extract('user', $vars);
-if (!$user || !$user->canEdit()) {
-	return;
-}
+$user = elgg_get_page_owner_entity();
 
 $enable_chat = elgg_get_plugin_user_setting('enableChat', $user->getGUID(), 'elggchat');
 $allow_contact_from = elgg_get_plugin_user_setting('allow_contact_from', $user->getGUID(), 'elggchat');
@@ -45,12 +42,12 @@ echo elgg_view_field([
 
 echo elgg_view_field([
 	'#type' => 'hidden',
-	'name' => 'guid',
+	'name' => 'user_guid',
 	'value' => $user->guid,
 ]);
 
 echo elgg_view_field([
-	'#type' => 'submit',
-	'value' => elgg_echo('save'),
-	'class' => 'elgg-foot',
+	'#type' => 'hidden',
+	'name' => 'plugin_id',
+	'value' => 'elggchat',
 ]);

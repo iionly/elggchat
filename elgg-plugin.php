@@ -8,7 +8,7 @@ define("ELGGCHAT_MESSAGE", "elggchat_message");
 return [
 	'plugin' => [
 		'name' => 'Elggchat',
-		'version' => '4.0.0',
+		'version' => '4.3.0',
 	],
 	'actions' => [
 		'elggchat/create' => [
@@ -27,9 +27,6 @@ return [
 			'access' => 'logged_in',
 		],
 		'elggchat/get_smiley' => [
-			'access' => 'logged_in',
-		],
-		'elggchat/usersettings_save' => [
 			'access' => 'logged_in',
 		],
 		'elggchat/admin_message' => [
@@ -56,17 +53,10 @@ return [
 		'allow_contact_from' => 'friends',
 		'show_offline_user' => 'no',
 	],
-	'routes' => [
-		'elggchat:usersettings' => [
-			'path' => '/elggchat/usersettings/{username?}',
-			'resource' => 'elggchat/usersettings',
-		],
-	],
 	'hooks' => [
 		'register' => [
 			'menu:page' => [
 				"\ElggchatHooks::elggchat_administer_utilities_page" => [],
-				"\ElggchatHooks::elggchat_usersettings_page" => [],
 			],
 			'menu:user_hover' => [
 				"\ElggchatHooks::elggchat_user_hover_menu" => [],
