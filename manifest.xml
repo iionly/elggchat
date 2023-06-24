@@ -3,7 +3,7 @@
 	<name>Elggchat</name>
 	<id>elggchat</id>
 	<author>iionly (for Elgg 1.8 and newer), ColdTrick IT Solutions</author>
-	<version>3.0.0</version>
+	<version>3.0.1</version>
 	<category>communication</category>
 	<description>Provides a simple chat based on Elgg.</description>
 	<website>https://github.com/iionly</website>

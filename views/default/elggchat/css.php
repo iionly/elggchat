@@ -42,10 +42,10 @@
 	float: right;
 	background: #E4ECF5;
 	padding: 3px 3px 0 3px;
-	margin: 1px 3px 0px 3px;
+	margin: 1px 8px 0px 3px;
 	height: 23px;
 	/* ie fix */
-	max-width:200px;
+	max-width:206px;
 	font-family: "Lucida Grande",Arial,Tahoma,Verdana,sans-serif;
 	text-decoration: none;
 	text-shadow: none;
@@ -67,6 +67,9 @@
 
 .elggchat-sessionname {
 	height: 1.0rem;
+	font-family: "Lucida Grande",Arial,Tahoma,Verdana,sans-serif;
+	text-decoration: none;
+	text-shadow: none;
 }
 
 .elggchat_session_new_messages {
@@ -100,7 +103,7 @@
 	width: 120px;
 	height: 23px;
 	padding: 3px 3px 0 3px;
-	margin: 1px 3px 0px 3px;
+	margin: 1px 12px 0px 3px;
 	background: white;
 	border: 1px solid #CCCCCC;
 	-moz-border-radius: 3px;
@@ -250,6 +253,8 @@
 
 .messageIcon {
 	margin-right: 7px;
+	max-width: 25px;
+	max-height: 25px;
 }
 
 .messageName {
@@ -261,7 +266,7 @@
 
 .chatsessiondatacontainer {
 	position: relative;
-	width: 200px;
+	width: 206px;
 	display: none;
 }
 
@@ -269,7 +274,7 @@
 	position: absolute;
 	bottom: 19px;
 	width: 206px;
-	margin: 0 -4px;
+	margin: 0px -10px 0px -4px;
 	max-height: 600px;
 	border: 1px solid #4690D6;
 	border-bottom: 0px;

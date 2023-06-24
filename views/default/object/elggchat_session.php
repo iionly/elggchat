@@ -47,7 +47,7 @@ if ($full) {
 		foreach($members as $member) {
 			$result = "";
 			$result .= "<tr class='chatmember'>";
-			$result .= "<td width='30px'>".elgg_view('output/img', ['src' => htmlspecialchars($member->getIconURL('tiny'), ENT_QUOTES, 'UTF-8', false), 'class' => 'messageIcon'])."</td>";
+			$result .= "<td>".elgg_view('output/img', ['src' => $user->getIconURL('tiny'), 'alt' => $user->name, 'class' => 'messageIcon'])."</td>";
 			$result .= "<td class='chatmemberinfo'>"."<a href='" . $member->getUrl() . "'>" . $member->name . "</a></td>";
 			$result .= "</tr>";
 			$info .= $result;
@@ -71,8 +71,8 @@ if ($full) {
 			if ($message->name == ELGGCHAT_MESSAGE) {
 				$result .= "<div name='message' id='" .  $offset . "' class='messageWrapper'>";
 
-				$result .= "<table><tr><td width='30px' rowspan='2'>";
-				$result .= elgg_view('output/img', ['src' => htmlspecialchars($member->getIconURL('tiny'), ENT_QUOTES, 'UTF-8', false), 'class' => 'messageIcon']);
+				$result .= "<table><tr><td rowspan='2'>";
+				$result .= elgg_view('output/img', ['src' => $user->getIconURL('tiny'), 'alt' => $user->name, 'class' => 'messageIcon']);
 				$result .= "</td><td class='messageName'>" . $member->name . ", " . elgg_get_friendly_time($message->time_created) . "</td></tr>";
 
 				$result .= "<tr><td>";

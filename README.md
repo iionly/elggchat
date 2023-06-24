@@ -1,8 +1,8 @@
 Elggchat for Elgg 3.0 and newer Elgg 3.X
 ========================================
 
-Latest Version: 3.0.0  
-Released: 2023-06-17  
+Latest Version: 3.0.1  
+Released: 2023-06-20  
 Contact: iionly@gmx.de  
 License: GNU General Public License version 2  
 Copyright: (c) iionly (for Elgg 1.8 and newer), ColdTrick IT Solutions  

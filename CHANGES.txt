@@ -1,6 +1,13 @@
 Changelog
 =========
 
+3.0.1
+-----
+
+- Backport of fixed bugs from 4.0.0 release,
+- Hoover menu: added icon to menu entry,
+- Layout adjustment necessary in Elgg 3.
+
 3.0.0
 -----
 

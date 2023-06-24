@@ -17,7 +17,7 @@
 
 elgg_require_js('elggchat/session');
 
-if (!(elgg_is_logged_in() && (elgg_get_plugin_user_setting("enableChat", "yes", "elggchat") != "no"))) {
+if (!(elgg_is_logged_in() && (elgg_get_plugin_user_setting("enableChat", 0, "elggchat", "yes") != "no"))) {
 	return;
 }
 
