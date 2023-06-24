@@ -20,7 +20,6 @@ $user = $vars["chatuser"];
 if (!empty($user) && ($user instanceof ElggUser)) {
 	$link = $vars["link"];
 	$icon = $vars["icon"];
-	$iconSize = $vars["iconSize"];
 	$onlineStatus = $vars["onlineStatus"];
 
 	if ($link !== false || $link !== true) {
@@ -35,15 +34,11 @@ if (!empty($user) && ($user instanceof ElggUser)) {
 		$onlineStatus = true;
 	}
 
-	if (empty($iconSize) || !in_array($iconSize, ["tiny", "small", "medium", "large", "profile"])) {
-		$iconSize = "tiny";
-	}
-
 	$result = "";
 	$result .= "<tr class='chatmember'>";
 
 	if ($icon) {
-		$result .= "<td>".elgg_view('output/img', ['src' => htmlspecialchars($user->getIconURL($iconSize), ENT_QUOTES, 'UTF-8', false), 'class' => 'messageIcon'])."</td>";
+		$result .= "<td>".elgg_view('output/img', ['src' => $user->getIconURL('tiny'), 'alt' => $user->name, 'class' => 'messageIcon'])."</td>";
 	}
 
 	if ($link) {

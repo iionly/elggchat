@@ -69,10 +69,14 @@ class ElggchatHooks {
 				$allowed = true;
 			}
 			if ($allowed) {
-				$item = new ElggMenuItem('elggchat-hover', elgg_echo("elggchat:chat:profile:invite"), '#');
-				$item->setSection('action');
-				$item->{"data-userguid"} = "{$user->guid}";
-				$menu[] = $item;
+				$menu[] = ElggMenuItem::factory([
+					'name' => 'elggchat-hover',
+					'href' => '#',
+					'text' => elgg_echo('elggchat:chat:profile:invite'),
+					'icon' => 'comments-o',
+					'section' => 'action',
+					'data-userguid' => "{$user->guid}",
+				]);
 			}
 		}
 		return $menu;
